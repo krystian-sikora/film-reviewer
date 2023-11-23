@@ -1,0 +1,12 @@
+
+<div class="container">
+    <h1>Trending</h1>
+    <swiper-container navigation="true" loop="true" slides-per-view="auto">
+        <ng-container *ngFor="let movie of popular">
+            <swiper-slide >
+                <img src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}">
+            </swiper-slide>
+        </ng-container>
+    </swiper-container>
+</div>
+
