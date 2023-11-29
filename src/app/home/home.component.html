@@ -4,7 +4,7 @@
     <swiper-container navigation="true" loop="true" slides-per-view="auto">
         <ng-container *ngFor="let movie of popular">
             <swiper-slide >
-                <img ngSrc="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}"
+                <img ngSrc="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"
                      alt="Poster for movie: {{ movie.title }}"
                      fill="fill"
                      [routerLink]="['/movies', movie.id]">
