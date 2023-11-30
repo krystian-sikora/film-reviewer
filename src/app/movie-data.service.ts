@@ -27,4 +27,14 @@ export class MovieDataService {
     let headers = this.getHeaders()
     return this.http.get(this.API_URL + '/movie/popular', { headers })
   }
+
+  getImage(id:string): Observable<any> {
+    let headers = this.getHeaders()
+    return this.http.get(this.API_URL + '/movie/' + id + '/images',  { headers })
+  }
+
+  getMovieDetails(id:string): Observable<any> {
+    let headers = this.getHeaders()
+    return this.http.get(this.API_URL + '/movie/' + id,  { headers })
+  }
 }

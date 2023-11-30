@@ -1,0 +1,11 @@
+
+<div class="container movie">
+  <div class="movie-poster">
+    <img ngSrc="https://image.tmdb.org/t/p/w500/{{ movieDetails.poster_path }}"
+         alt="Poster for movie: {{ movieDetails.title }}" width="300" height="450">
+  </div>
+  <div class="movie-overview">
+    <h1>{{ movieDetails.title }}</h1>
+    <h2>{{ movieDetails.overview }}</h2>
+  </div>
+</div>
