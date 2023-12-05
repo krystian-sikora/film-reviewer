@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
-import { MovieDataService } from "../movie-data.service";
+import { ApiService } from "../api/api.service";
 
 @Component({
   selector: 'app-movie-details',
@@ -15,14 +15,18 @@ export class MovieDetailsComponent implements OnInit {
   id: string | undefined;
   movieDetails: any;
 
-  constructor(private route: ActivatedRoute, private movieDataService: MovieDataService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!
-    return this.movieDataService.getMovieDetails(this.id!)
+    return this.getMovieDetails()
+  }
+
+  private getMovieDetails() {
+    return this.api.getMovieDetails(this.id!)
       .subscribe((res) => {
-        this.movieDetails = res
-        console.log(this.movieDetails)
-      })
+        this.movieDetails = res;
+        console.log(this.movieDetails);
+      });
   }
 }
