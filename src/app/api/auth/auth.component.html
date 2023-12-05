@@ -1,0 +1,9 @@
+
+<div *ngIf="isLoggedIn; else loggedOut ">
+    <h1>You are logged in!</h1>
+</div>
+<ng-template #loggedOut>
+    <button type="button" class="btn btn-dark" (click)="logIn()">Log in</button>
+    <button type="button" class="btn btn-dark" (click)="createSession()">Create session</button>
+</ng-template>
+
