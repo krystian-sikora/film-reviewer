@@ -1,6 +1,6 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { MovieDataService } from '../movie-data.service';
+import { ApiService } from '../api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs';
 import { RouterLink } from "@angular/router";
@@ -16,10 +16,10 @@ import { RouterLink } from "@angular/router";
 export class HomeComponent implements OnInit {
   popular: any;
 
-  constructor(private movieDataService: MovieDataService) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.movieDataService.getPopular()
+    this.api.getPopular()
       .pipe(take(1))
       .subscribe(
         (res) => {

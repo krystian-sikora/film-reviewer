@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MovieDataService } from './movie-data.service';
+import { ApiService } from './api.service';
 
 describe('MovieDataService', () => {
-  let service: MovieDataService;
+  let service: ApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MovieDataService);
+    service = TestBed.inject(ApiService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+  expect(service).toBeTruthy();
   });
 });
