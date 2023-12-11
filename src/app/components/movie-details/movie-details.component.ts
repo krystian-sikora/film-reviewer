@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
-import { ApiService } from "../api/api.service";
+import { ApiService } from "../../core/services/api/api.service";
 
 @Component({
   selector: 'app-movie-details',
@@ -26,7 +26,6 @@ export class MovieDetailsComponent implements OnInit {
     return this.api.getMovieDetails(this.id!)
       .subscribe((res) => {
         this.movieDetails = res;
-        console.log(this.movieDetails);
       });
   }
 }
