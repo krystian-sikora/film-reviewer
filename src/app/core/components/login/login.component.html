@@ -1,0 +1,10 @@
+
+@if (isLoggedIn()) {
+    <h1>You are logged in, {{ account.username }}!</h1> 
+    <button type="button" class="btn btn-danger" (click)="logOut()">Logout</button>
+}
+@else {
+    <button type="button" class="btn btn-dark" (click)="logIn()">Login</button>
+    <!-- <button type="button" class="btn btn-dark" (click)="createSession()">Create session</button> -->
+}
+

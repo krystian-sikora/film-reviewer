@@ -1,6 +1,6 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ApiService } from '../api/api.service';
+import { ApiService } from '../../core/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs';
 import { RouterLink } from "@angular/router";

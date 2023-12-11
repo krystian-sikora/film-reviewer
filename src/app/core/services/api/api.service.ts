@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,12 @@ export class ApiService {
     .set('accept', 'application/json')
 
 
-  authorize(): Observable<any> {
-    return this.http.get(environment.API_URL + '/3/authentication', { headers: this.headers })
+  authenticate(token: string): Observable<any> {
+    return this.http.get(environment.API_URL + '/3/authenticate/' + token, { headers: this.headers })
+  }
+
+  account(): Observable<any> {
+    return this.http.get(environment.API_URL + '/3/account/1?api_key=' + environment.API_KEY + '&session_id=' + localStorage.getItem('session_id'), { headers: this.headers })
   }
 
   getPopular(): Observable<any> {
