@@ -6,7 +6,6 @@ import { register } from 'swiper/element/bundle';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/services/auth/auth.service';
 
-
 register();
 
 @Component({
