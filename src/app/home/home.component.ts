@@ -15,6 +15,10 @@ import { RouterLink } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   popular: any;
+  actors: any;
+  upcoming: any;
+  topRatedTVSeries: any;
+
 
   constructor(private api: ApiService) { }
 
@@ -25,5 +29,29 @@ export class HomeComponent implements OnInit {
         (res) => {
           this.popular = res.results;
         })
-  }
+
+    this.api.getActors()
+      .pipe(take(1))
+      .subscribe(
+        (res) => {
+          console.log(res.results)
+          this.actors = res.results;
+        })
+
+    this.api.getUpcoming()
+      .pipe(take(1))
+      .subscribe(
+        (res) => {
+          this.upcoming = res.results;
+        })
+
+    this.api.getTopRatedTVSeries()
+    .pipe(take(1))
+    .subscribe(
+      (res) => {
+        this.topRatedTVSeries = res.results;
+      })
+
+  } 
+  
 }
