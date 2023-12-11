@@ -1,10 +1,57 @@
-
 img {
     object-fit: cover;
 }
 
 swiper-slide, img {
     width: 300px;
-    height: 450px;
+    height: 400px;
     margin-right: 4px;
+    margin-bottom: 10px;
+    //background-color: red;
+}
+
+#actors {
+
+    width: 150px;
+    height: 200px;
+    margin-right: 4px; 
+
+}
+
+// swiper-slideX, img {
+//     width: 150px;
+//     height: 200px;
+//     margin-right: 4px;
+//     //background-color: red;
+// }
+
+// swiper-slide, img {
+//     width: 300px;
+//     height: 400px;
+//     margin-right: 4px;
+//     //background-color: red;
+// }
+
+.container{
+
+    background-color: rgb(88, 88, 172);
+    //font-style: ;
+    color: white;
+    //font-size: 90px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif
+
+}
+
+.swiper-container{
+
+    max-width: fit-content;
+}
+
+.spaceAir{
+
+    background-color: rgb(27, 27, 81);
+    height: 30px;
+    margin-right: 4px; 
+    
+
 }
