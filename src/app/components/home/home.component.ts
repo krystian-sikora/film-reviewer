@@ -15,7 +15,7 @@ import { RouterLink } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   popular: any;
-  actors: any;
+  people: any;
   upcoming: any;
   topRatedTVSeries: any;
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(res.results)
-          this.actors = res.results;
+          this.people = res.results;
         })
 
     this.api.getUpcoming()

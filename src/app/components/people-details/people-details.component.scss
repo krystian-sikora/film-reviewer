@@ -1,0 +1,28 @@
+.person-poster {
+    width: 300px;
+    float: left;
+}
+  
+.person-overview {
+  margin-left: 10px;
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+.person {
+  height: 600px;
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+h1, h2 {
+  margin-left: 50px;
+
+}
+
+h1 {
+  font-size: 70px;
+}
+
+h2 {
+  font-size: 30px;
+}
+  

@@ -13,42 +13,42 @@
             </ng-container>
         </swiper-container>
     </div>
-    <div class="spaceAir"></div>
+    <div class="spacer"></div>
     <div class="container">
-        <h1>Popular Actors</h1>
+        <h1>Popular people in the movie industry</h1>
         <swiper-container navigation="true" loop="true" slides-per-view="auto">
-            <ng-container *ngFor="let actor of actors">
-                <swiper-slide id="actors">
-                    <img ngSrc="https://image.tmdb.org/t/p/w500/{{ actor.profile_path }}"
-                        alt="Poster for movie: {{ actor.title }}"
+            <ng-container *ngFor="let person of people">
+                <swiper-slide id="people">
+                    <img ngSrc="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
+                        alt="Picture of person: {{ person.name }}"
                         fill="fill"
-                        [routerLink]="['/movies', actor.id]">
+                        [routerLink]="['/people', person.id]">
                 </swiper-slide>
             </ng-container>
         </swiper-container>
     </div>
-    <div class="spaceAir"></div>
+    <div class="spacer"></div>
     <div class="container">
         <h1>Upcoming films</h1>
         <swiper-container navigation="true" loop="true" slides-per-view="auto">
             <ng-container *ngFor="let movie of upcoming">
                 <swiper-slide>
                     <img ngSrc="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"
-                        alt="Poster for movie: {{ movie.title }}"
+                        alt="Poster for upcoming movie: {{ movie.title }}"
                         fill="fill"
                         [routerLink]="['/movies', movie.id]">
                 </swiper-slide>
             </ng-container>
         </swiper-container>
     </div>
-    <div class="spaceAir"></div>
+    <div class="spacer"></div>
     <div class="container">
         <h1>Top rated TV Series</h1>
         <swiper-container navigation="true" loop="true" slides-per-view="auto">
             <ng-container *ngFor="let TVSeries of topRatedTVSeries">
                 <swiper-slide>
                     <img ngSrc="https://image.tmdb.org/t/p/w500/{{ TVSeries.poster_path }}"
-                        alt="Poster for movie: {{ TVSeries.title }}"
+                        alt="Poster for series: {{ TVSeries.title }}"
                         fill="fill"
                         [routerLink]="['/movies', TVSeries.id]">
                 </swiper-slide>

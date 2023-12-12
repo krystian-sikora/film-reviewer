@@ -1,0 +1,12 @@
+@if (personDetails) {
+    <div class="container person">
+        <div class="person-poster">
+            <img ngSrc="https://image.tmdb.org/t/p/w500/{{ personDetails.profile_path }}"
+            alt="Poster for person: {{ personDetails.name }}" width="300" height="450">        </div>
+        <div class="person-overview">
+            <h1>{{ personDetails.name }}</h1>
+            <h2>{{ personDetails.biography }}</h2>
+        </div>
+    </div>
+}
+  
