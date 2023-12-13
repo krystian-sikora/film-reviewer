@@ -17,7 +17,7 @@ register();
 })
 export class AppComponent implements OnInit {
   title = 'film-reviewer';
-  private request_token: any = false;
+  private request_token: string | undefined;
 
   constructor(private auth: AuthService, private route: ActivatedRoute) {}
 
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
         (res) => {
           this.request_token = res['request_token'];
 
-          if (this.request_token) this.auth.newSession(this.request_token);
+          if (this.request_token) this.auth.newSession(this.request_token!);
           else this.auth.validateUser();
         }
       );

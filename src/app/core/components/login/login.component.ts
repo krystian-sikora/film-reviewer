@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { ApiService } from '../../services/api/api.service';
+import { AccountDetails } from '../../../interfaces/account/account-details';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +10,20 @@ import { ApiService } from '../../services/api/api.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  account: any;
+  account: AccountDetails | undefined;
 
   constructor(private auth: AuthService, private api: ApiService) {
     this.getAccountData()
   }
 
-  isLoggedIn() {
+  getAccountData() {
+    this.api.account().subscribe(
+        (res) => {
+            this.account = res;
+        })
+  }
+
+  isLoggedIn(): boolean {
     return this.auth.isLoggedIn();
   }
 
@@ -27,17 +35,4 @@ export class LoginComponent {
     this.auth.setLoggedIn(false);
     localStorage.removeItem('session_id');
   }
-
-  getAccountData() {
-    this.api.account().subscribe(
-        (res) => {
-            console.log(res)
-            this.account = res;
-        }
-    )
-}
-
-  // createSession() {
-  //   this.auth.createSession()
-  // }
 }

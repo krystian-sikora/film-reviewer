@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { MovieDetails } from '../../../interfaces/movie/movie-details';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,8 @@ export class ApiService {
     return this.http.get(environment.API_URL + '/3/movie/' + id + '/images',  { headers: this.headers })
   }
 
-  getMovieDetails(id: string): Observable<any> {
-    return this.http.get(environment.API_URL + '/3/movie/' + id,  { headers: this.headers })
+  getMovieDetails(id: string): Observable<MovieDetails> {
+    return this.http.get<MovieDetails>(environment.API_URL + '/3/movie/' + id,  { headers: this.headers })
   }
   
   getPersonDetails(id: string): Observable<any> {
@@ -46,7 +47,7 @@ export class ApiService {
     return this.http.get(environment.API_URL +  '/3/authentication/session/new?api_key=' + environment.API_KEY + '&request_token=' + REQUEST_TOKEN)
   }
 
-  getActors(): Observable<any> {
+  getPeople(): Observable<any> {
     return this.http.get(environment.API_URL + '/3/trending/person/day', { headers: this.headers })
   }
 
@@ -54,7 +55,7 @@ export class ApiService {
     return this.http.get(environment.API_URL + '/3/movie/upcoming', { headers: this.headers })
   }
 
-  getTopRatedTVSeries(): Observable<any> {
+  getTopRatedSeries(): Observable<any> {
     return this.http.get(environment.API_URL + '/3/tv/top_rated', { headers: this.headers })
   }
 }
