@@ -5,17 +5,16 @@
   
 .person-overview {
   margin-left: 10px;
-  overflow: hidden; /* if you don't want #second to wrap below #first */
+  overflow: hidden;
 }
 
 .person {
   height: 600px;
-  overflow: hidden; /* will contain if #first is longer than #second */
+  overflow: hidden;
 }
 
 h1, h2 {
   margin-left: 50px;
-
 }
 
 h1 {

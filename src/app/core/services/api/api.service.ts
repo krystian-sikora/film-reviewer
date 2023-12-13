@@ -39,6 +39,10 @@ export class ApiService {
     return this.http.get<MovieDetails>(environment.API_URL + '/3/movie/' + id,  { headers: this.headers })
   }
   
+  getSeriesDetails(id: string): Observable<any> {
+    return this.http.get(environment.API_URL + '/3/tv/' + id,  { headers: this.headers })
+  }
+  
   getPersonDetails(id: string): Observable<any> {
     return this.http.get(environment.API_URL + '/3/person/' + id,  { headers: this.headers })
   }
