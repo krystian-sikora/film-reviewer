@@ -4,7 +4,7 @@ Film-reviewer is a movie & series reviewing Singe Page Application made with Anu
 
 ## Wymagania projektu
 
-- Aplikacja musi posiadać min. 3 formularze składacych się z min. 6 kontrolek różnego typu (np. input, checkmox, select, textbox)
+- Aplikacja musi posiadać min. 3 formularze składacych się z min. 6 kontrolek różnego typu (np. input, checkbox, select, textbox)
 - Formularze mają odpowiedni typ pól (np. hasła type="password")
 - Aplikacja ma pozwolić na wyświetlenie rezultatów danych wprowadzonyh do formularzy
 - Dane z formularzy mają być wzajemnie widoczne
