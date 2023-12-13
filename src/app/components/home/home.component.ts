@@ -4,6 +4,8 @@ import { ApiService } from '../../core/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs';
 import { RouterLink } from "@angular/router";
+import { MovieDetails } from '../../interfaces/movie/movie-details';
+import { PersonDetails } from '../../interfaces/people/person-details';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,10 @@ import { RouterLink } from "@angular/router";
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent implements OnInit {
-  popular: any;
-  people: any;
-  upcoming: any;
-  topRatedTVSeries: any;
+  popular: Array<MovieDetails> | undefined;
+  people: Array<PersonDetails> | undefined;
+  upcoming: Array<MovieDetails> | undefined;
+  topRatedSeries: Array<MovieDetails> | undefined;
 
   constructor(private api: ApiService) { }
 
@@ -29,11 +31,10 @@ export class HomeComponent implements OnInit {
           this.popular = res.results;
         })
 
-    this.api.getActors()
+    this.api.getPeople()
       .pipe(take(1))
       .subscribe(
         (res) => {
-          console.log(res.results)
           this.people = res.results;
         })
 
@@ -44,12 +45,12 @@ export class HomeComponent implements OnInit {
           this.upcoming = res.results;
         })
 
-    this.api.getTopRatedTVSeries()
-    .pipe(take(1))
-    .subscribe(
-      (res) => {
-        this.topRatedTVSeries = res.results;
-      })
+    this.api.getTopRatedSeries()
+      .pipe(take(1))
+      .subscribe(
+        (res) => {
+          this.topRatedSeries = res.results;
+        })
 
   } 
   

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
+import { PersonDetails } from '../../interfaces/people/person-details';
 
 @Component({
   selector: 'app-people-details',
@@ -12,21 +13,22 @@ import { ApiService } from '../../core/services/api/api.service';
 })
 export class PeopleDetailsComponent {
   id: string | undefined;
-  personDetails: any;
+  personDetails: PersonDetails | undefined;
 
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id')!
     this.getPersonDetails()
-    
   }
 
   private getPersonDetails() {
-    this.api.getPersonDetails(this.id!)
+    this.api.getPersonDetails(this.getPersonId())
       .subscribe((res) => {
         this.personDetails = res;
-        console.log(res)
       });
+  }
+
+  private getPersonId(): string {
+    return this.route.snapshot.paramMap.get('id')!;
   }
 }

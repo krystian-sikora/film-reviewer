@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
 import { ApiService } from "../../core/services/api/api.service";
+import { MovieDetails } from '../../interfaces/movie/movie-details';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,19 +15,23 @@ import { ApiService } from "../../core/services/api/api.service";
 
 export class MovieDetailsComponent implements OnInit {
   id: string | undefined;
-  movieDetails: any;
+  movieDetails: MovieDetails | undefined;
 
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id')!
-    return this.getMovieDetails()
+    this.getMovieDetails()
   }
 
   private getMovieDetails() {
-    return this.api.getMovieDetails(this.id!)
+    this.api.getMovieDetails(this.getMovieId())
+      .pipe(take(1))
       .subscribe((res) => {
         this.movieDetails = res;
       });
+  }
+
+  private getMovieId(): string {
+    return this.route.snapshot.paramMap.get('id')!;
   }
 }

@@ -5,6 +5,11 @@ import { PeopleDetailsComponent } from './components/people-details/people-detai
 
 export const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'prefix'
+    },
+    {
         path: 'home',
         component: HomeComponent
     },
@@ -15,10 +20,5 @@ export const routes: Routes = [
     {
         path: 'people/:id',
         component: PeopleDetailsComponent
-    },
-    {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'prefix'
     }
 ];
