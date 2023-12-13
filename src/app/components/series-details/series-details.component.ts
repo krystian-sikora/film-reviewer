@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
-import { MovieDetails } from '../../interfaces/movie/movie-details';
+import { SeriesDetails } from '../../interfaces/series/series-details';
 
 @Component({
   selector: 'app-series-details',
@@ -13,7 +13,7 @@ import { MovieDetails } from '../../interfaces/movie/movie-details';
 })
 export class SeriesDetailsComponent {
   id: string | undefined;
-  seriesDetails: MovieDetails | undefined; // MovieDetails has same fields as series, todo: rename?
+  seriesDetails: SeriesDetails | undefined;
 
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
