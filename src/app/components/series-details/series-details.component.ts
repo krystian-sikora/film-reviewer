@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
-import { MovieDetails } from '../../interfaces/movie/movie-details';
 import { SeriesDetails } from '../../interfaces/series/series-details';
 
 @Component({
@@ -26,7 +25,6 @@ export class SeriesDetailsComponent {
     this.api.getSeriesDetails(this.getSeriesId())
       .subscribe((res) => {
         this.seriesDetails = res;
-        console.log(res)
       });
   }
 
