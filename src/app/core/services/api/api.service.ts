@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { TvDetails } from '../../../interfaces/tv/tv-details';
 import { MovieDetails } from '../../../interfaces/movie/movie-details';
+import { PersonDetails } from '../../../interfaces/people/person-details';
 
 @Injectable({
   providedIn: 'root'
@@ -39,12 +41,12 @@ export class ApiService {
     return this.http.get<MovieDetails>(environment.API_URL + '/3/movie/' + id,  { headers: this.headers })
   }
   
-  getSeriesDetails(id: string): Observable<any> {
-    return this.http.get(environment.API_URL + '/3/tv/' + id,  { headers: this.headers })
+  getTvDetails(id: string): Observable<TvDetails> {
+    return this.http.get<TvDetails>(environment.API_URL + '/3/tv/' + id,  { headers: this.headers })
   }
   
-  getPersonDetails(id: string): Observable<any> {
-    return this.http.get(environment.API_URL + '/3/person/' + id,  { headers: this.headers })
+  getPersonDetails(id: string): Observable<PersonDetails> {
+    return this.http.get<PersonDetails>(environment.API_URL + '/3/person/' + id,  { headers: this.headers })
   }
 
   createSession(REQUEST_TOKEN: string): Observable<any> {
