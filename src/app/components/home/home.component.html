@@ -1,4 +1,7 @@
 
+<div class="spacer"></div>
+
+
 @if (popular) {
     <div class="container">
         <h1 >Trending Movies</h1>
@@ -8,7 +11,7 @@
                     <img ngSrc="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"
                         alt="Poster for movie: {{ movie.title }}"
                         fill="fill"
-                        routerLink="/movies/{{ movie.id }}">
+                        routerLink="/movie/{{ movie.id }}">
                 </swiper-slide>
             }
         </swiper-container>
@@ -26,7 +29,7 @@
                     <img ngSrc="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
                         alt="Picture of person: {{ person.name }}"
                         fill="fill"
-                        routerLink="/people/{{ person.id }}">
+                        routerLink="/person/{{ person.id }}">
                 </swiper-slide>
                 }
             }
@@ -44,7 +47,7 @@
                     <img ngSrc="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"
                         alt="Poster for upcoming movie: {{ movie.title }}"
                         fill="fill"
-                        routerLink="/movies/{{ movie.id }}">
+                        routerLink="/movie/{{ movie.id }}">
                 </swiper-slide>
             }
         </swiper-container>
@@ -61,9 +64,9 @@
                     <img ngSrc="https://image.tmdb.org/t/p/w500/{{ series.poster_path }}"
                         alt="Poster for series: {{ series.title }}"
                         fill="fill"
-                        routerLink="/series/{{ series.id }}">
+                        routerLink="/tv/{{ series.id }}">
                 </swiper-slide>
-            }            
+            }
         </swiper-container>
     </div>
     <div class="spacer"></div>

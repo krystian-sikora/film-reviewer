@@ -1,11 +1,38 @@
+$safety-orange: rgb(238, 122, 27);
+$marian-blue: rgb(48, 65, 115);
+$celeste: rgb(188, 248, 236);
+$light-blue: rgb(174, 217, 224);
+$cool-gray: rgb(159, 160, 195);
+
+$neon-rose: rgb(199, 21, 191);
+
 .container{
 
     //background-color: rgb(88, 88, 172);
     //font-style: ;
-    color: rgb(255, 129, 0);
+    color: $safety-orange;
     font-size: 100%;
     // jak sie to ustawia...
     //font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif
     font-style:oblique;
     //font-size:larger;
+}
+
+.navbar {
+
+  border-radius: 3px;
+  background: $neon-rose;
+  padding: 10px;
+  margin: 10px;
+  //background-clip: content-box;
+  //box-shadow: 10px 10px 10px #808080;
+}
+
+app-login {
+  align-content: end;
+}
+
+.navbar-brand{
+
+  color: white;
 }
