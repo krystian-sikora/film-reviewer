@@ -1,0 +1,76 @@
+<p id="title">Search your favourite movie</p>
+
+<div class="container">
+  
+<form action="#" method="get" class="mb-3">
+
+    <!-- Input: Wyszukaj konkretny film lub aktora -->
+    <div class="mb-3">
+      <label for="searchInput"  class="form-label">Wyszukaj film lub aktora:</label>
+      <input type="text" id="searchInput" name="searchInput" class="form-control" required>
+    </div>
+  
+    <div class="mb-3">
+      <!-- Checkbox: Zaznacz gatunki filmów do filtrowania -->
+    <label class="form-label">Gatunki filmów do filtrowania:</label>
+    <div class="col-auto">
+    <input type="checkbox" id="actionGenre" name="genre" value="Action">
+    <label for="actionGenre">Akcja</label>
+    
+    <input type="checkbox" id="dramaGenre" name="genre" value="Drama">
+    <label for="dramaGenre">Dramat</label>
+
+    <input type="checkbox" id="comedyGenre" name="genre" value="Comedy">
+    <label for="comedyGenre">Komedia</label>
+
+    <input type="checkbox" id="horrorGenre" name="genre" value="Horror">
+    <label for="comedyGenre">Horror</label>
+
+    <input type="checkbox" id="sci-fiGenre" name="genre" value="Sci-Fi">
+    <label for="comedyGenre">Sci-Fi</label>
+    </div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="inputPassword6" class="col-form-label">Wyszukaj rok premiery:</label>
+      </div>
+      <div class="col-auto">
+        <input type="number" id="yearInput" name="yearInput" min="1900" max="2024" class="form-control" aria-describedby="passwordHelpInline">
+      </div>
+      <div class="col-auto">
+      </div>
+    </div>
+    
+    <div class="mb-3">
+        <!-- Radio: Popularność / Data premiery -->
+    <div div class="col-auto">
+    <label class="form-label">Sortuj według:</label>
+    </div>
+    <div div class="col-auto">
+    <input type="radio" id="popularity" name="sort" value="popularity">
+    <label for="popularity">Popularność</label>
+    </div>
+    <div div class="col-auto">
+    <input type="radio" id="releaseDate" name="sort" value="releaseDate">
+    <label for="releaseDate">Data premiery</label>
+    </div>
+    </div>
+
+    <div class="mb-3">
+         <!-- Select: Sortuj od: Rosnąco / Malejąco -->
+    <div class="col-auto">
+    <label for="sortOrder">Sortuj od:</label>
+    </div>
+    <div class="col-auto">
+    <select id="sortOrder" name="sortOrder" class="form-control">
+      <option value="ascending">Rosnąco</option>
+      <option value="descending">Malejąco</option>
+    </select>
+    </div>
+    </div>
+
+    <!-- Przycisk do wysyłania formularza -->
+    <button type="submit" class="form-label" id="switch">Szukaj</button>
+  </form>
+</div>
