@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 export const routes: Routes = [
     {
@@ -24,4 +25,9 @@ export const routes: Routes = [
         path: 'tv/:id',
         component: DetailsComponent
     },
+
+    {
+        path: 'register',
+        component: RegistrationFormComponent
+    }
 ];
