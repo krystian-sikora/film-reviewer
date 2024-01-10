@@ -1,0 +1,59 @@
+
+<div class="container login-container rounded">
+    <h1>Sign into your account</h1>
+    <form (submit)="signIn()" [formGroup]="signInForm">
+        <div class="mb-3">
+          <label for="email" class="form-label" >Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email" [(ngModel)]="signInDetails.email" 
+                  required autocomplete="address-level1"
+                  [style.border-color]="!isValid('email') ? 'red' : ''">
+          @if (!isValid('email')) {
+            <p class="text-danger form-text small"
+              *ngIf="signInForm.get('email')?.hasError('required')">
+              This field is required.
+            </p>
+            <p class="text-danger form-text small"
+              *ngIf="signInForm.get('email')?.hasError('email')">
+              Email must be valid.
+            </p>
+          }
+          @if (usernameNotFound) {
+            <p class="text-danger form-text small">User with provided email doesn't exist</p>
+          }
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label" >Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" 
+                  [(ngModel)]="signInDetails.password" required
+                  [style.border-color]="!isValid('password') ? 'red' : ''">
+          @if (!isValid('password')) {
+            <p class="text-danger form-text small"
+              *ngIf="signInForm.get('password')?.hasError('required')">
+              This field is required.
+            </p>
+            <p class="text-danger form-text small"
+              *ngIf="signInForm.get('password')?.hasError('minlength')">
+              Minimum password lenght of 8 characters.
+            </p>
+            <p class="text-danger form-text small"
+              *ngIf="signInForm.get('password')?.hasError('maxlength')">
+              Maximum password lenght of 32 characters.
+            </p>
+          }
+          @if (badCredentials) {
+            <p class="text-danger form-text small">Provided password is wrong</p>
+          }
+        </div>
+        <div class="mb-3 form-check sm-text">
+          <input type="checkbox" class="form-check-input" id="checkbox" name="rememberMe">
+          <label class="form-check-label" for="checkbox">Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-success login-button">Sign in</button>
+      </form>
+      <div class="sm-text">
+        <p>Don't have an account?
+            <a class="link pink-hover" [routerLink]="['/register']">Sign up</a> 
+        </p>
+      </div>
+</div>
+
