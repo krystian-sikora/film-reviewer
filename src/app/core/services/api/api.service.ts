@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environments.development';
+import { environment } from '../../../../environments/environment.development';
 import { TvDetails } from '../../../interfaces/tv/tv-details';
 import { MovieDetails } from '../../../interfaces/movie/movie-details';
 import { PersonDetails } from '../../../interfaces/people/person-details';
