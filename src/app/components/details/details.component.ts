@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Details } from '../../interfaces/details';
+import { Details } from '../../interfaces/details/details';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
 
