@@ -4,8 +4,8 @@ import { ApiService } from '../../core/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs';
 import { RouterLink } from "@angular/router";
-import { MovieDetails } from '../../interfaces/movie/movie-details';
-import { PersonDetails } from '../../interfaces/people/person-details';
+import { MovieDetails } from '../../interfaces/details/movie/movie-details';
+import { PersonDetails } from '../../interfaces/details/people/person-details';
 
 @Component({
   selector: 'app-home',
