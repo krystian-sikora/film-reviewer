@@ -1,0 +1,13 @@
+
+@if (details) {
+    <div class="container details">
+        <div class="poster">
+            <img ngSrc="https://image.tmdb.org/t/p/w500/{{ details.img_path }}"
+                    alt="Poster for: {{ details.name }}" width="300" height="450">
+        </div>
+        <div class="overview">
+            <h1>{{ details.name }}</h1>
+            <h2>{{ details.description }}</h2>
+        </div>
+    </div>
+}
