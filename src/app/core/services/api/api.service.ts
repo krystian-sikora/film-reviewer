@@ -5,7 +5,6 @@ import { environment } from '../../../../environments/environment';
 import { TvDetails } from '../../../interfaces/details/tv/tv-details';
 import { MovieDetails } from '../../../interfaces/details/movie/movie-details';
 import { PersonDetails } from '../../../interfaces/details/people/person-details';
-
 @Injectable({
   providedIn: 'root'
 })
