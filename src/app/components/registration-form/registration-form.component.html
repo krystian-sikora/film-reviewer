@@ -1,47 +1,53 @@
-<div class="container">
+<div class="container register-container rounded">
     <div class="form" id="registration-form">
       <h1 id="registration-bar">Welcome to PRIME reviewer! Please register:</h1>
-
-      <div class="d-flex justify-content-center">
-        <div class="w-50">
           <form>
             <div class="mb-3 content-center">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" required>
+              <input type="text" class="form-control" id="name" formControlName="name" [(ngModel)]="signUpDetails.name" required>
             </div>
             <div class="mb-3">
               <label for="surname" class="form-label">Surname</label>
-              <input type="number" class="form-control" id="surname" required>
+              <input type="text" class="form-control" id="surname" formControlName="surname" [(ngModel)]="signUpDetails.surname" required>
             </div>
             <div class="mb-3">
                 <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" required>
+                <input type="text" class="form-control" id="city" formControlName="city" [(ngModel)]="signUpDetails.city" required>
               </div>
               <div class="mb-3">
                 <label for="street" class="form-label">Street</label>
-                <input type="text" class="form-control" id="street" required>
+                <input type="text" class="form-control" id="street" formControlName="street" [(ngModel)]="signUpDetails.street" required>
               </div>
               <div class="mb-3">
                 <label for="house-number" class="form-label">House nr</label>
-                <input type="TEXT" class="form-control" id="house-number">
+                <input type="text" class="form-control" id="house-number"  formControlName="house-number" [(ngModel)]="signUpDetails.houseNumber">
               </div>
               <div class="mb-3">
                 <label for="zipcode" class="form-label">Zip code</label>
-                <input type="text" class="form-control" id="zipcode" required>
+                <input type="text" class="form-control" id="zipcode" formControlName="zipcode" [(ngModel)]="signUpDetails.zipCode" required>
               </div>
             <div>
               <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" class="form-control" id="description"></textarea>
+                <textarea type="text" class="form-control" id="description" formControlName="description" [(ngModel)]="signUpDetails.description" ></textarea>
               </div>
               <div class="mb-3-select">
                 <label for="industry" class="form-label">Choose your sex</label>
-                <select type="number" class="form-control" id="industry">
+                <select type="number" class="form-control" id="sex" formControlName="sex" [(ngModel)]="signUpDetails.gender" >
                   <option value="1">Male</option>
                   <option value="2">Female</option>
                 </select>
+              <div *ngFor="let choice of genresList; let i=index" class="col-md-2"> p
+                <label>
+                  <input type="checkbox" [value]="choice.value" (change)="onCheckChange($event)">
+                  {{choice.description}}
+                </label>
               </div>
-                <div class="checkboxes">
+              @for (choice of genresList; track $index) {
+                <p>{{ choice }}</p>
+              }
+              </div>
+                <!-- <div class="checkboxes">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
@@ -77,11 +83,14 @@
                     <label class="form-check-label" for="flexCheckChecked">
                         Romans
                     </label>
-                    </div></div>
+                    </div></div> -->
              </div>
-            <button type="sign-up" class="btn btn-primary" >Sign up</button>
+            <button type="sign-up" class="btn btn-primary register-button">Sign up</button>
           </form>
-        </div>
-      </div>
+          <div class="sm-text">
+            <p>Do you already have an account?
+              <a class="link pink hover" [routerLink]="['/register']">Sign in</a>
+            </p>
+          </div>
     </div>
-  </div>
+</div>
