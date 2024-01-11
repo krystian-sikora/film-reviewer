@@ -5,27 +5,25 @@ img {
 }
 
 swiper-slide, img {
-    width: 300px;
+    width: 260px;
     height: 400px;
     margin-right: 4px;
-    margin-bottom: 10px;
 }
 
 #people {
 
     width: 150px;
-    height: 200px;
+    height: 230px;
     margin-right: 4px;
 
 }
 
 .container {
+    padding: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     background-color: rgb(88, 88, 172);
-    //font-style: ;
     color: white;
-    //font-size: 90px;
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif
 }
 
 .swiper-container {
