@@ -1,13 +1,34 @@
 
 @if (details) {
-    <div class="container details">
-        <div class="poster">
-            <img ngSrc="https://image.tmdb.org/t/p/w500/{{ details.img_path }}"
+    <div class="container details rounded">
+        <div class="poster-container">
+            <img class="rounded"
+                    ngSrc="https://image.tmdb.org/t/p/w500/{{ details.img_path }}"
                     alt="Poster for: {{ details.name }}" width="300" height="450">
         </div>
         <div class="overview">
-            <h1>{{ details.name }}</h1>
-            <h2>{{ details.description }}</h2>
+            <div class="row">
+                <div class="col-md title">
+                    <h1>
+                        {{ details.name }}   
+                        <p id="year">                        
+                            {{ details.release_date.substring(0,4) }}                
+                        </p>
+                    </h1>
+                </div>
+                
+                @if (details.vote_average != 0) {
+                    <div class="col-md-auto rating">
+                        <p>
+                            <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
+                            {{ details.vote_average.toFixed(1) }}
+                        </p>
+                    </div>
+                }
+            </div>
+            <div class="description">
+                <h2>{{ details.description }}</h2>
+            </div>
         </div>
     </div>
 }
