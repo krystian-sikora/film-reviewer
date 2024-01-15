@@ -4,14 +4,15 @@ import { Details } from '../../interfaces/details/details';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
 import { NONE_TYPE } from '@angular/compiler';
+import { ReviewsComponent } from "./reviews/reviews.component";
 
 
 @Component({
-  selector: 'app-details',
-  standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
-  templateUrl: './details.component.html',
-  styleUrl: './details.component.scss'
+    selector: 'app-details',
+    standalone: true,
+    templateUrl: './details.component.html',
+    styleUrl: './details.component.scss',
+    imports: [CommonModule, NgOptimizedImage, ReviewsComponent]
 })
 export class DetailsComponent implements OnInit {
 
