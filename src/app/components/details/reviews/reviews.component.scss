@@ -1,0 +1,61 @@
+
+.review-container {
+    padding: 10px;
+    background-color: rgb(88, 88, 172);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+
+.svg-star {
+    width: 12px;
+    height: 12px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    vertical-align: middle;
+
+}
+
+.badge {
+    margin-left: 15px;
+    background-color: rgb(199, 21, 191);
+    vertical-align: middle;
+
+}
+
+.nickname-container, .svg-star, .review-score {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.review-score {
+    font-size: 15px;
+}
+
+
+
+.nickname {
+    font-size: 30px;
+}
+
+.review-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.review-content {
+    font-size: 25px;
+}
+
+.col {
+    padding-left: 0px;
+}
+
+
