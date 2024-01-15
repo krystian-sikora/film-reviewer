@@ -17,25 +17,11 @@ register();
 })
 export class AppComponent implements OnInit {
   title = 'film-reviewer';
-  private request_token: string | undefined;
 
-  constructor(private auth: AuthService, private route: ActivatedRoute) {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.handleQuery();
-  }
-
-  // todo: find a better name for this function
-  private handleQuery() {
-    this.route.queryParams
-      .subscribe(
-        (res) => {
-          this.request_token = res['request_token'];
-
-          if (this.request_token) this.auth.newSession(this.request_token!);
-          else this.auth.validateUser();
-        }
-      );
+    this.auth.handleAuth();
   }
 }
 
