@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { LoginResponse } from '../../interfaces/auth/login-response';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,7 @@ import { LoginResponse } from '../../interfaces/auth/login-response';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
   
   protected signInDetails: SignInDetails = new SignInDetails();
   protected signInForm: FormGroup = new FormGroup({});
@@ -42,8 +43,7 @@ export class LoginFormComponent implements OnInit {
           this.usernameNotFound = false;
           this.badCredentials = false;
 
-          localStorage.setItem('access_token', response.access_token);
-          localStorage.setItem('refresh_token', response.refresh_token);
+          this.auth.logIn(response.access_token, response.refresh_token);
           this.router.navigate(['/']);
         },
         error: (error: any) => {
