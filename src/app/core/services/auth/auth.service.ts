@@ -1,52 +1,67 @@
-import { Injectable } from '@angular/core';
-import { ApiService } from '../api/api.service';
-import { take } from 'rxjs/internal/operators/take';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  REQUEST_TOKEN!: string;
-  loggedIn: boolean = false;
+export class AuthService implements OnInit {
 
-  constructor(private api: ApiService, private router: Router) { }
+  isLoggedIn: boolean = false;
 
-  isLoggedIn() {
-    return this.loggedIn
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    console.log('auth service init')
+    this.handleAuth();
   }
 
-  setLoggedIn(value: boolean) {
-    this.loggedIn = value;
+  logIn(accesToken: string, refreshToken: string) {
+    localStorage.setItem('access_token', accesToken);
+    localStorage.setItem('refresh_token', refreshToken);
+    this.isLoggedIn = true;
   }
 
-  logIn() {
-    this.api.requestToken()
-      .pipe(take(1))
-      .subscribe({
-        next: (res) => {
-          this.REQUEST_TOKEN = res.request_token
-          window.location.href = 'https://www.themoviedb.org/authenticate/'+ this.REQUEST_TOKEN + '?redirect_to=' + window.origin
+  logOut() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    this.isLoggedIn = false;
+  }
+
+  handleAuth() {
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+
+    if (accessToken == null || refreshToken == null) return;
+    
+    console.log(refreshToken)
+    this.refreshToken(refreshToken);
+  }
+
+  refreshToken(token: string) {
+    this.refreshTokenRequest(token).subscribe(
+      {
+        next: (response: any) => {
+          console.log(response)
+          localStorage.setItem('access_token', response.access_token);
+          localStorage.setItem('refresh_token', response.refresh_token);
+          this.isLoggedIn = true;
         },
-        error: err => console.error('Observable emitted an error: ' + err)
-      })
-  }
-
-  newSession(REQUEST_TOKEN: string) {
-    this.api.createSession(REQUEST_TOKEN)
-      .subscribe(
-        (res) => {
-          this.router.navigate([''])
-          localStorage.setItem('session_id', res.session_id);
-          this.validateUser()
+        error: (error: any) => {
+          // todo: handle error
+          console.log(error);
+          this.isLoggedIn = false;
+        },
+        complete: () => {
+          console.log('complete')
         }
-      )  
+      }
+    );
   }
 
-  validateUser() {
-    if (!localStorage.getItem('session_id')) return;
-    this.setLoggedIn(true)
-
-    // todo: validate user in tmdb
+  refreshTokenRequest(token: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token)
+    console.log(headers)
+    return this.http.post('http://localhost:8080/api/auth/refresh', null, { headers: headers });
   }
 }
