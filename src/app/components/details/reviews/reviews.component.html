@@ -1,0 +1,46 @@
+
+
+
+@if (reviews.length > 0) {
+   
+    @for (review of reviews; track $index) {
+
+        <div class="review-container container">
+            <div class="row">
+                <div class="col-auto">
+                    <img class="profile-picture" src="https://imgs.search.brave.com/jDaD2AVabGAKPLSE-cR6CFfmWyveJS17jAFQESFODm8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnN0/YWNrLmltZ3VyLmNv/bS9sNjBIZi5wbmc">
+                </div>
+                <div class="col">
+                    <div class="nickname-review row">
+                        <span class="nickname-container">
+                            {{review.nickname}}
+                            <span class="badge">
+                                <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
+                                <span class="review-score">{{ review.score.toFixed(1) }}</span> 
+                            </span>
+                            
+                        </span>
+                    </div>
+                    <div class="review-content-container row">
+                        <span class="review-title">{{ review.title }}</span>
+                        <p class="review-content">{{ review.overview }}</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        }
+
+
+
+}
+@else {
+    <div class="container rounded">
+        <div class="review rounded row">
+            <div class="col-auto">
+                <h3>There are no reviews for this movie yet.</h3>
+            </div>
+        </div>
+    </div>
+}
