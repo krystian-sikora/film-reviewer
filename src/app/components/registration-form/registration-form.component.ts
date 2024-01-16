@@ -59,8 +59,6 @@ export class RegistrationFormComponent implements OnInit {
   signUp() {
     if (!this.isFormValid()) return;
 
-    console.log('x')
-
     this.registerRequest = {
       "email": this.signUpDetails.email,
       "password": this.signUpDetails.password,
@@ -70,7 +68,6 @@ export class RegistrationFormComponent implements OnInit {
     this.signUpRequest().subscribe(
       {
         next: (response: LoginResponse | any) => {
-          console.log(response);
           this.userNameAlreadyExist = false;
           this.emailAlreadyExist = false;
 
@@ -111,10 +108,7 @@ export class RegistrationFormComponent implements OnInit {
   isValid(input: string) {
     if(this.signUpForm.get(input)?.invalid && 
       this.signUpForm.get(input)?.errors && 
-      (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched)) {
-        console.log(this.signUpForm.get(input)?.errors)
-        return false;
-      }
+      (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched)) return false;
     return true;
   }
 
