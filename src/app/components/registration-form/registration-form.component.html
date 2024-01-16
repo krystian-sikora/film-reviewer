@@ -62,7 +62,7 @@
                 </div>
               <div class="mb-3">
                 <label for="houseNumber" class="form-label">House number</label>
-                <input type="text" class="form-control" id="houseNumber"  formControlName="houseNumber" [(ngModel)]="signUpDetails.houseNumber"
+                <input type="number" class="form-control" id="houseNumber"  formControlName="houseNumber" [(ngModel)]="signUpDetails.houseNumber"
                 [style.border-color]="!isValid('houseNumber') ? 'red' : ''">
                 @if (!isValid('houseNumber')) {
                   <p class="text-danger form-text small"

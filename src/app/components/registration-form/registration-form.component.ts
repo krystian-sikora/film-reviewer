@@ -26,6 +26,7 @@ export class RegistrationFormComponent implements OnInit {
   protected genres: Array<String> = Object.keys(Genres);
   protected userNameAlreadyExist: boolean = false;
   protected emailAlreadyExist: boolean = false;
+  protected registerRequest: any;
 
   ngOnInit(): void {
 
@@ -44,8 +45,8 @@ export class RegistrationFormComponent implements OnInit {
       userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       city: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      houseNumber: new FormControl('', [Validators.pattern("^[1-9]\d*$")]),
-      zipCode: new FormControl('', [Validators.pattern("^\d{2}-\d{3}$")]),
+      houseNumber: new FormControl('', [Validators.required]),
+      zipCode: new FormControl('', [Validators.pattern("^\\d{2}-\\d{3}$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]),
       description: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9999)]),
@@ -58,7 +59,14 @@ export class RegistrationFormComponent implements OnInit {
   signUp() {
     if (!this.isFormValid()) return;
 
-    console.log(this.signUpDetails);
+    console.log('x')
+
+    this.registerRequest = {
+      "email": this.signUpDetails.email,
+      "password": this.signUpDetails.password,
+      "username": this.signUpDetails.userName,
+    }
+
     this.signUpRequest().subscribe(
       {
         next: (response: LoginResponse | any) => {
@@ -97,13 +105,16 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   signUpRequest() {
-    return this.http.post(environment.LOCAL_API_URL + '/api/auth/register', this.signUpDetails);
+    return this.http.post(environment.LOCAL_API_URL + '/api/auth/register', this.registerRequest);
   }
 
   isValid(input: string) {
     if(this.signUpForm.get(input)?.invalid && 
       this.signUpForm.get(input)?.errors && 
-      (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched)) return false;
+      (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched)) {
+        console.log(this.signUpForm.get(input)?.errors)
+        return false;
+      }
     return true;
   }
 
