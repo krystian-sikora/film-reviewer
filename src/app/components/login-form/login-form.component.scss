@@ -1,0 +1,54 @@
+.login-container {
+    margin-top: 90px;
+    max-width: 500px;
+    background-color: rgb(88, 88, 172);
+    padding: 20px;
+}
+
+.login-button {
+    width: 100%;
+    background-color: rgb(199, 21, 191);
+    border-color: rgb(199, 21, 191);
+}
+
+.login-button:hover {
+    background-color: rgb(168, 25, 161);
+    border-color: rgb(168, 25, 161);
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.sm-text { 
+    font-size: 17px;
+}
+
+.link {
+    color: rgb(199, 21, 191);
+    text-shadow: 1px 0 rgb(199, 21, 191);
+}
+
+.link:hover {
+    color: rgb(168, 25, 161);
+}
+
+input:focus {
+    border-color: rgb(199, 21, 191);
+    box-shadow: 0 0 0 0.3rem rgba(199, 21, 191, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: rgb(199, 21, 191);
+    border-color: rgb(199, 21, 191);
+}
+
+.small {
+    font-size: 15px;
+}
+
+#emailHelp {
+    font-size: 10px;
+}

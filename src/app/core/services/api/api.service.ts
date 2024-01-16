@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment.development';
-import { TvDetails } from '../../../interfaces/tv/tv-details';
-import { MovieDetails } from '../../../interfaces/movie/movie-details';
-import { PersonDetails } from '../../../interfaces/people/person-details';
+import { environment } from '../../../../environments/environment';
+import { TvDetails } from '../../../interfaces/details/tv/tv-details';
+import { MovieDetails } from '../../../interfaces/details/movie/movie-details';
+import { PersonDetails } from '../../../interfaces/details/people/person-details';
 
 @Injectable({
   providedIn: 'root'

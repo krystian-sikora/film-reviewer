@@ -1,6 +1,5 @@
 
-<div class="spacer"></div>
-
+<app-search-bar-component></app-search-bar-component>
 
 @if (popular) {
     <div class="container">
@@ -16,7 +15,6 @@
             }
         </swiper-container>
     </div>
-    <div class="spacer"></div>
 }
 
 @if (people) {
@@ -26,16 +24,15 @@
             @for (person of people; track person.id) {
                 @if (person.profile_path) {
                     <swiper-slide id="people">
-                    <img ngSrc="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
-                        alt="Picture of person: {{ person.name }}"
-                        fill="fill"
-                        routerLink="/person/{{ person.id }}">
-                </swiper-slide>
+                        <img ngSrc="https://image.tmdb.org/t/p/w500/{{ person.profile_path }}"
+                            alt="Picture of person: {{ person.name }}"
+                            fill="fill"
+                            routerLink="/person/{{ person.id }}">
+                    </swiper-slide>
                 }
             }
         </swiper-container>
     </div>
-    <div class="spacer"></div>
 }
 
 @if (upcoming) {
@@ -52,7 +49,6 @@
             }
         </swiper-container>
     </div>
-    <div class="spacer"></div>
 }
 
 @if (topRatedSeries) {
@@ -69,5 +65,4 @@
             }
         </swiper-container>
     </div>
-    <div class="spacer"></div>
 }

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { SignUpDetails } from '../../classes/sign-up-details';
-import { Genre } from '../../interfaces/genre';
 import { GenreChoice } from '../../classes/genre-choice';
 import { Genres } from '../../enums/genres';
+import { LoginResponse } from '../../interfaces/auth/login-response';
 
 @Component({
   selector: 'app-registration-form',
@@ -18,12 +18,14 @@ import { Genres } from '../../enums/genres';
 })
 export class RegistrationFormComponent implements OnInit {
 
-  constructor(private http: HttpClient){ }
+  constructor(private http: HttpClient, private router: Router){ }
 
   protected signUpDetails: SignUpDetails = new SignUpDetails();
   protected signUpForm: FormGroup = new FormGroup({});
   protected genresList: Array<GenreChoice> = new Array<GenreChoice>();
   protected genres: Array<String> = Object.keys(Genres);
+  protected userNameAlreadyExist: boolean = false;
+  protected emailAlreadyExist: boolean = false;
 
   ngOnInit(): void {
 
@@ -39,10 +41,13 @@ export class RegistrationFormComponent implements OnInit {
 
       name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       surname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       city: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       houseNumber: new FormControl('', [Validators.pattern("^[1-9]\d*$")]),
       zipCode: new FormControl('', [Validators.pattern("^\d{2}-\d{3}$")]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]),
       description: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9999)]),
       gender: new FormControl('', [Validators.required]),
       genres: new FormArray([])
@@ -56,11 +61,28 @@ export class RegistrationFormComponent implements OnInit {
     console.log(this.signUpDetails);
     this.signUpRequest().subscribe(
       {
-        next: (response: any) => {
+        next: (response: LoginResponse | any) => {
           console.log(response);
+          this.userNameAlreadyExist = false;
+          this.emailAlreadyExist = false;
+
+          localStorage.setItem('access_token', response.access_token);
+          localStorage.setItem('refresh_token', response.refresh_token);
+          this.router.navigate(['/']);
         },
-        error: (error: any) => {      
-          console.log(error.error);
+        error: (error: any) => {
+          if (error.error == "USERNAME ALREADY EXISTS") {
+            this.userNameAlreadyExist = true;
+          }
+          else{
+            this.userNameAlreadyExist = false;
+          }
+          if (error.error == "EMAIL ADDRESS ALREADY EXISTS") {
+            this.emailAlreadyExist = true;
+          }
+          else{
+            this.emailAlreadyExist = false;
+          }
         }
       }
     );
@@ -75,7 +97,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   signUpRequest() {
-    return this.http.post(environment.LOCAL_API_URL + '/api/auth/authenticate', this.signUpDetails);
+    return this.http.post(environment.LOCAL_API_URL + '/api/auth/register', this.signUpDetails);
   }
 
   isValid(input: string) {

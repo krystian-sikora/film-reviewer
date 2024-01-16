@@ -11,5 +11,8 @@ export class SignUpDetails {
     description: String="";
     gender: String="";
     favouriteGenres: Array<GenreChoice> = new Array<GenreChoice>(); 
+    password: String="";
+    email: String="";
+    userName: String="";
 
 }
