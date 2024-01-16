@@ -1,19 +1,13 @@
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['']">PRIME-reviewer</a>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-light" type="submit">Search</button>
-        </form>
-
-        <button class="btn btn-success" type="button" [routerLink]="['/register']">Register</button>
-
-        <app-login class="d-flex"></app-login>
-
+  <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['']">film-reviewer</a>
+  
+        <div class="collapse navbar-collapse buttons">
+          <app-login-new class="d-flex"></app-login-new>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
+  
 

@@ -4,13 +4,14 @@ import { ApiService } from '../../core/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { take } from 'rxjs';
 import { RouterLink } from "@angular/router";
-import { MovieDetails } from '../../interfaces/movie/movie-details';
-import { PersonDetails } from '../../interfaces/people/person-details';
+import { MovieDetails } from '../../interfaces/details/movie/movie-details';
+import { PersonDetails } from '../../interfaces/details/people/person-details';
+import { SearchBarComponentComponent } from '../search-bar-component/search-bar-component.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterLink, NgOptimizedImage],
+  imports: [CommonModule, HttpClientModule, RouterLink, NgOptimizedImage, SearchBarComponentComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

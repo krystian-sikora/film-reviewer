@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Details } from '../../interfaces/details';
+import { Details } from '../../interfaces/details/details';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
+import { NONE_TYPE } from '@angular/compiler';
 
 
 @Component({
@@ -50,7 +51,9 @@ export class DetailsComponent implements OnInit {
           name: res.title,
           description: res.overview,
           img_path: res.poster_path
-        } as Details
+        } as Details;
+        console.log(this.details)
+
       }
     )
   }
@@ -63,7 +66,9 @@ export class DetailsComponent implements OnInit {
           id: res.id,
           name: res.name,
           description: res.biography,
-          img_path: res.profile_path
+          img_path: res.profile_path,
+          vote_average: 0,
+          release_date: ''
         } as Details;
       }
     )
@@ -77,7 +82,8 @@ export class DetailsComponent implements OnInit {
           id: res.id,
           name: res.name,
           description: res.overview,
-          img_path: res.poster_path
+          img_path: res.poster_path,
+          release_date: res.first_air_date
         } as Details;
       }
     )
