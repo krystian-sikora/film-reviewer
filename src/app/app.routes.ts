@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+
 
 export const routes: Routes = [
     {
@@ -28,5 +31,14 @@ export const routes: Routes = [
     {
         path: 'search',
         component: SearchFormComponent
+    },
+    {
+        path: 'register',
+        component: RegistrationFormComponent
+    },
+
+    {
+        path: 'login',
+        component: LoginFormComponent
     },
 ];

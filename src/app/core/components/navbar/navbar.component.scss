@@ -7,36 +7,29 @@ $cool-gray: rgb(159, 160, 195);
 $neon-rose: rgb(199, 21, 191);
 
 .container{
-
-    //background-color: rgb(88, 88, 172);
-    //font-style: ;
     color: $safety-orange;
     font-size: 100%;
-    // jak sie to ustawia...
-    //font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif
-    font-style:oblique;
-    //font-size:larger;
 }
 
 .navbar {
-
-  border-radius: 3px;
+  border-radius: 10px;
   background: $neon-rose;
-  padding: 10px;
   margin: 10px;
-  //background-clip: content-box;
-  //box-shadow: 10px 10px 10px #808080;
 }
 
-app-login {
-  align-content: end;
-}
-
-.navbar-brand{
-
+.navbar-brand {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 30px;
   color: white;
+}
+
+.buttons {
+  justify-content: flex-end;
+  margin-right: 10px;
 }
 
 button {
   margin-left: 10px;
 }
+

@@ -1,16 +1,40 @@
-.poster {
+.poster-container {
     width: 300px;
     float: left;
+}
+
+#year {
+    display: inline;
+    font-size: 40px;
+    font-style: italic;
+    vertical-align: top;
 }
 
 .overview {
     margin-left: 10px;
     overflow: hidden;
+    margin-right: 10px;
+}
+
+.description {
+    text-align: justify;
 }
 
 .details {
-    height: 600px;
+    height: auto;
     overflow: hidden;
+    margin-top: 90px;
+    background-color: rgb(88, 88, 172);
+    padding: 10px;
+}
+
+.rating {
+    justify-content: end;
+}
+
+.svg-star {
+    width: 20px;
+    height: 20px;
 }
 
 h1, h2 {
@@ -24,4 +48,7 @@ h1 {
 h2 {
     font-size: 30px;
 }
-  
+
+.movie-title {
+    font-weight: bold;
+}
