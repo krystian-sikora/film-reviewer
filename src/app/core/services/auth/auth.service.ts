@@ -61,7 +61,12 @@ export class AuthService implements OnInit {
   refreshTokenRequest(token: string) {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token)
-    console.log(headers)
+
     return this.http.post('http://localhost:8080/api/auth/refresh', null, { headers: headers });
+  }
+
+  getHeaders() {
+    return new HttpHeaders()
+      .set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
   }
 }
