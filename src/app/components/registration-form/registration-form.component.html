@@ -10,13 +10,13 @@
               <p class="text-danger form-text small"
                 *ngIf="signUpForm.get('name')?.hasError('required')">
                 This field is required.
-            </p>
+              </p>
             }
             </div>
             <div class="mb-3">
               <label for="surname" class="form-label">Surname</label>
               <input type="text" class="form-control" id="surname" formControlName="surname" [(ngModel)]="signUpDetails.surname"
-              [style.border-color]="!isValid('surname') ? 'red' : ''">
+                      [style.border-color]="!isValid('surname') ? 'red' : ''">
             @if (!isValid('surname')) {
               <p class="text-danger form-text small"
                 *ngIf="signUpForm.get('surname')?.hasError('required')">
@@ -25,23 +25,31 @@
             }
             </div>
             <div class="mb-3">
-              <label for="userName" class="form-label">User name</label>
+              <label for="userName" class="form-label" >User name</label>
               <input type="text" class="form-control" id="userName" formControlName="userName" [(ngModel)]="signUpDetails.userName"
-              [style.border-color]="!isValid('userName') ? 'red' : ''">
-            @if (!isValid('userName')) {
-              <p class="text-danger form-text small"
-                *ngIf="signUpForm.get('userName')?.hasError('required')">
-                This field is required.
-            </p>
-            }
-            @if (emailAlreadyExist) {
-            <p class="text-danger form-text small">User with provided email already exist</p>
+                      [style.border-color]="!isValid('userName') ? 'red' : ''">
+              @if (!isValid('userName')) {
+                <p class="text-danger form-text small"
+                  *ngIf="signUpForm.get('userName')?.hasError('required')">
+                  This field is required.
+                </p>
+                <p class="text-danger form-text small"
+                  *ngIf="signUpForm.get('userName')?.hasError('minlength')">
+                  Minimum lenght of user name is 4 characters.
+                </p>
+                <p class="text-danger form-text small"
+                  *ngIf="signUpForm.get('userName')?.hasError('maxlength')">
+                  Maximum lenghth of user name is 20 characters.
+                </p>
+              }
+            @if (userNameAlreadyExist) {
+            <p class="text-danger form-text small">User with provided name already exists</p>
             }
             </div>
             <div class="mb-3">
                 <label for="city" class="form-label">City</label>
                 <input type="text" class="form-control" id="city" formControlName="city" [(ngModel)]="signUpDetails.city"
-                [style.border-color]="!isValid('city') ? 'red' : ''">
+                        [style.border-color]="!isValid('city') ? 'red' : ''">
                 @if (!isValid('city')) {
                   <p class="text-danger form-text small"
                     *ngIf="signUpForm.get('city')?.hasError('required')">
@@ -52,7 +60,7 @@
               <div class="mb-3">
                 <label for="street" class="form-label">Street</label>
                 <input type="text" class="form-control" id="street" formControlName="street" [(ngModel)]="signUpDetails.street"
-                [style.border-color]="!isValid('street') ? 'red' : ''">
+                        [style.border-color]="!isValid('street') ? 'red' : ''">
                 @if (!isValid('street')) {
                   <p class="text-danger form-text small"
                     *ngIf="signUpForm.get('street')?.hasError('required')">
@@ -63,22 +71,26 @@
               <div class="mb-3">
                 <label for="houseNumber" class="form-label">House number</label>
                 <input type="number" class="form-control" id="houseNumber"  formControlName="houseNumber" [(ngModel)]="signUpDetails.houseNumber"
-                [style.border-color]="!isValid('houseNumber') ? 'red' : ''">
+                        [style.border-color]="!isValid('houseNumber') ? 'red' : ''">
                 @if (!isValid('houseNumber')) {
                   <p class="text-danger form-text small"
                     *ngIf="signUpForm.get('houseNumber')?.hasError('required')">
-                    This field is required.
+                    This field is required and has to be integer value.
                 </p>
                 }
                 </div>
               <div class="mb-3">
                 <label for="zipCode" class="form-label">Zip code</label>
                 <input type="text" class="form-control" id="zipCode" formControlName="zipCode" [(ngModel)]="signUpDetails.zipCode"
-                [style.border-color]="!isValid('zipCode') ? 'red' : ''">
+                        [style.border-color]="!isValid('zipCode') ? 'red' : ''">
                 @if (!isValid('zipCode')) {
                   <p class="text-danger form-text small"
                     *ngIf="signUpForm.get('zipCode')?.hasError('required')">
                     This field is required.
+                </p>
+                <p class="text-danger form-text small"
+                    *ngIf="signUpForm.get('zipCode')?.hasError('pattern')">
+                    This is not correct zip code pattern.
                 </p>
                 }
                 </div>
@@ -97,7 +109,7 @@
                   </p>
                   }
                   @if (emailAlreadyExist) {
-                    <p class="text-danger form-text small">User with provided email already't exist</p>
+                    <p class="text-danger form-text small">User with provided email already exists</p>
                   }
               </div>
               <div class="mb-3">

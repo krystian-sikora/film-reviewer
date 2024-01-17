@@ -40,16 +40,16 @@ export class RegistrationFormComponent implements OnInit {
   
     this.signUpForm = new FormGroup({
 
-      name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      surname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      city: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
+      surname: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
+      userName: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
+      city: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
+      street: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
       houseNumber: new FormControl('', [Validators.required]),
-      zipCode: new FormControl('', [Validators.pattern("^\\d{2}-\\d{3}$")]),
+      zipCode: new FormControl('', [Validators.required, Validators.pattern("^\\d{2}-\\d{3}$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]),
-      description: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9999)]),
+      description: new FormControl('', [Validators.minLength(1), Validators.maxLength(9999)]),
       gender: new FormControl('', [Validators.required]),
       genres: new FormArray([])
     }
@@ -62,7 +62,7 @@ export class RegistrationFormComponent implements OnInit {
     this.registerRequest = {
       "email": this.signUpDetails.email,
       "password": this.signUpDetails.password,
-      "username": this.signUpDetails.userName,
+      "userName": this.signUpDetails.userName,
     }
 
     this.signUpRequest().subscribe(
