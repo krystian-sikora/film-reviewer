@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login-new',
@@ -8,16 +9,16 @@ import { Router } from '@angular/router';
   styleUrl: './login-new.component.scss'
 })
 export class LoginNewComponent {
+  protected loggedIn: boolean = false;
  
-  constructor(private router: Router) { }
+  constructor(private router: Router, protected auth: AuthService) { }
 
   logOut() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    this.auth.logOut();
     this.router.navigate(['/']);
   }
 
   isLoggedIn() {
-    return localStorage.getItem('access_token') ? true : false;
+    return this.auth.isAuthenticated();
   }
 }
