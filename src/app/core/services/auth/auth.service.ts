@@ -6,13 +6,17 @@ import { Injectable, OnInit } from '@angular/core';
 })
 export class AuthService implements OnInit {
 
-  isLoggedIn: boolean = false;
+  protected isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     console.log('auth service init')
     this.handleAuth();
+  }
+
+  isAuthenticated() {
+    return this.isLoggedIn;
   }
 
   logIn(accesToken: string, refreshToken: string) {
@@ -33,7 +37,6 @@ export class AuthService implements OnInit {
 
     if (accessToken == null || refreshToken == null) return;
     
-    console.log(refreshToken)
     this.refreshToken(refreshToken);
   }
 
@@ -41,14 +44,11 @@ export class AuthService implements OnInit {
     this.refreshTokenRequest(token).subscribe(
       {
         next: (response: any) => {
-          console.log(response)
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('refresh_token', response.refresh_token);
           this.isLoggedIn = true;
         },
         error: (error: any) => {
-          // todo: handle error
-          console.log(error);
           this.isLoggedIn = false;
         },
         complete: () => {

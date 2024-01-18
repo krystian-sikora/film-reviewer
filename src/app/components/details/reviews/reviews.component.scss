@@ -1,5 +1,5 @@
 
-.review-container {
+.container {
     padding: 10px;
     background-color: rgb(88, 88, 172);
     border-radius: 10px;
@@ -40,8 +40,6 @@
     font-size: 15px;
 }
 
-
-
 .nickname {
     font-size: 30px;
 }
@@ -70,4 +68,16 @@
 
 .row {
     margin-bottom: 5px;
+}
+
+a {
+    color: rgb(199, 21, 191);
+}
+
+a:hover {
+    color: rgb(168, 25, 161);
+}
+
+.user-review {
+    border: 3px solid rgb(199, 21, 191);
 }

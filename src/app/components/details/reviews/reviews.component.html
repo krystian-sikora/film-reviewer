@@ -1,63 +1,50 @@
 
-@if (auth.isLoggedIn) {
-
-    <div class="review-container container">
-        <form (submit)="submitReview()" [formGroup]="reviewForm">
-            <div class="row">
-                <div class="col-auto">
-                    <img class="profile-picture" src="https://imgs.search.brave.com/jDaD2AVabGAKPLSE-cR6CFfmWyveJS17jAFQESFODm8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnN0/YWNrLmltZ3VyLmNv/bS9sNjBIZi5wbmc">
-                </div>
-                <div class="col">
-                        <span>Add review</span>
-                        <div class="row row-cols-lg-auto g-3 align-items-center">
-                            <div class="col-12">
-                                <input placeholder="title" class="form-control d-inline" id="title" formControlName="title" 
-                                    [(ngModel)]="review.title" required
-                                    [style.border-color]="!isValid('title') ? 'red' : ''">
-                            </div>
-                            <div class="col-12">
-                                <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
-                            </div>
-                            <div class="col-12">
-                                
-                                <select class="form-select d-inline" formControlName="score" [(ngModel)]="review.score" required
-                                    [style.border-color]="!isValid('score') ? 'red' : ''">
-    
-                                    @for (n of numSequence(10); track $index) {
-                                        <option value="{{ $index + 1 }}">{{ $index + 1 }}</option>
-                                    }
-    
-                                </select>   
-                            </div>
-                        </div>
-                    <div class="mb-3">
-                        <textarea placeholder="content" class="form-control" id="content" formControlName="content" 
-                            [(ngModel)]="review.content" required
-                            [style.border-color]="!isValid('title') ? 'red' : ''"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-light">Submit</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-}
-
-@else {
-    <div class="container rounded">
-        <div class="review rounded row">
-            <div class="col-auto">
-                <h3>You must be logged in to add a review.</h3>
-            </div>
-        </div>
-    </div>
-}
-
-@if (reviews.length > 0) {
-   
-    @for (review of reviews; track $index) {
-
+@if (auth.isAuthenticated()) {
+    @if (!userReview.user_reviewed) {
         <div class="review-container container">
+            <form (submit)="submitReview()" [formGroup]="reviewForm">
+                <div class="row">
+                    <div class="col-auto">
+                        <img class="profile-picture" src="https://imgs.search.brave.com/jDaD2AVabGAKPLSE-cR6CFfmWyveJS17jAFQESFODm8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnN0/YWNrLmltZ3VyLmNv/bS9sNjBIZi5wbmc">
+                    </div>
+                    <div class="col">
+                            <span>Add review</span>
+                            <div class="row row-cols-lg-auto g-3 align-items-center">
+                                <div class="col-12">
+                                    <input placeholder="title" class="form-control d-inline" id="title" formControlName="title" 
+                                        [(ngModel)]="review.title" required
+                                        [style.border-color]="!isValid('title') ? 'red' : ''">
+                                </div>
+                                <div class="col-12">
+                                    <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
+                                </div>
+                                <div class="col-12">
+                                    
+                                    <select class="form-select d-inline" formControlName="score" [(ngModel)]="review.score" required
+                                        [style.border-color]="!isValid('score') ? 'red' : ''">
+        
+                                        @for (n of numSequence(19); track $index) {
+                                            <option value="{{ ($index + 1)/2 + 1/2 }}">{{ ($index + 1)/2 + 1/2 }}</option>
+                                        }
+        
+                                    </select>   
+                                </div>
+                            </div>
+                        <div class="mb-3">
+                            <textarea placeholder="content" class="form-control" id="content" formControlName="content" 
+                                [(ngModel)]="review.content" required
+                                [style.border-color]="!isValid('title') ? 'red' : ''"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-light">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    }
+
+    @else {
+        <div class="review-container container user-review">
             <div class="row">
                 <div class="col-auto">
                     <img class="profile-picture" src="https://imgs.search.brave.com/jDaD2AVabGAKPLSE-cR6CFfmWyveJS17jAFQESFODm8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnN0/YWNrLmltZ3VyLmNv/bS9sNjBIZi5wbmc">
@@ -65,27 +52,122 @@
                 <div class="col">
                     <div class="nickname-review row">
                         <span class="nickname-container">
-                            {{review.nickname}}
+                            {{userReview.review.nickname}}
                             <span class="badge">
                                 <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
-                                <span class="review-score">{{ review.score.toFixed(1) }}</span>
+                                <span class="review-score">{{ userReview.review.score.toFixed(1) }}</span>
                             </span>
                             <span class="review-date">
-                                Posted at {{ review.created_at | date: 'h:mm dd/MM/yyyy' }}
+                                Posted at {{ userReview.review.created_at | date: 'H:mm dd/MM/yyyy' }}
                             </span>
                         </span>
                     </div>
                     <div class="review-content-container row">
-                        <span class="review-title">{{ review.title }}</span>
-                        <p class="review-content">{{ review.content }}</p>
+                        <span class="review-title">{{ userReview.review.title }}</span>
+                        <p class="review-content">{{ userReview.review.content }}</p>
                     </div>
                 </div>
                 
             </div>
         </div>
-        }
+    }
+    
 }
+
 @else {
+    <div class="container rounded">
+        <div class="col-auto">
+            <p class="text-center">
+                You must be 
+                <a [routerLink]="['/login']" contenteditable="text-decoration-none">
+                    logged in
+                </a> 
+                to add a review.
+            </p>
+        </div>
+    </div>
+}
+
+@if (reviews.length > 0) {
+    @if (userReview.user_reviewed) {
+        @for (review of reviews; track $index) {
+            @if (isUserReviewed(review)) {
+                
+            }
+            @else {
+                <div class="review-container container">
+                    <div class="row">
+                        <div class="col-auto">
+                            <img class="profile-picture" src="https://imgs.search.brave.com/jDaD2AVabGAKPLSE-cR6CFfmWyveJS17jAFQESFODm8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnN0/YWNrLmltZ3VyLmNv/bS9sNjBIZi5wbmc">
+                        </div>
+                        <div class="col">
+                            <div class="nickname-review row">
+                                <span class="nickname-container">
+                                    {{review.nickname}}
+                                    <span class="badge">
+                                        <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
+                                        <span class="review-score">{{ review.score.toFixed(1) }}</span>
+                                    </span>
+                                    <span class="review-date">
+                                        Posted at {{ review.created_at | date: 'H:mm dd/MM/yyyy' }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="review-content-container row">
+                                <span class="review-title">{{ review.title }}</span>
+                                <p class="review-content">{{ review.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+    @else {
+        @for (review of reviews; track $index) {
+            <div class="review-container container">
+                <div class="row">
+                    <div class="col-auto">
+                        <img class="profile-picture" src="https://imgs.search.brave.com/jDaD2AVabGAKPLSE-cR6CFfmWyveJS17jAFQESFODm8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnN0/YWNrLmltZ3VyLmNv/bS9sNjBIZi5wbmc">
+                    </div>
+                    <div class="col">
+                        <div class="nickname-review row">
+                            <span class="nickname-container">
+                                {{review.nickname}}
+                                <span class="badge">
+                                    <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
+                                    <span class="review-score">{{ review.score.toFixed(1) }}</span>
+                                </span>
+                                <span class="review-date">
+                                    Posted at {{ review.created_at | date: 'H:mm dd/MM/yyyy' }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="review-content-container row">
+                            <span class="review-title">{{ review.title }}</span>
+                            <p class="review-content">{{ review.content }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    
+}
+
+@else if (loadReviewsError) {
+    
+        <div class="container rounded">
+            <div class="review rounded row">
+                <div class="col-auto">
+                    <h3>There was an error loading the reviews for this movie.</h3>
+                </div>
+            </div>
+        </div>
+}
+
+@else {
+
     <div class="container rounded">
         <div class="review rounded row">
             <div class="col-auto">
@@ -93,4 +175,5 @@
             </div>
         </div>
     </div>
+
 }
