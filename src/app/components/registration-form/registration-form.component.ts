@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +17,9 @@ import { LoginResponse } from '../../interfaces/auth/login-response';
   styleUrl: './registration-form.component.scss'
 })
 export class RegistrationFormComponent implements OnInit {
+onSubmitForm(_t8: NgForm) {
+throw new Error('Method not implemented.');
+}
 
   constructor(private http: HttpClient, private router: Router){ }
 
