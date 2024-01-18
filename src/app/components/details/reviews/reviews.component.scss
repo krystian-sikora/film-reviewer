@@ -1,5 +1,5 @@
 
-.review-container {
+.container {
     padding: 10px;
     background-color: rgb(88, 88, 172);
     border-radius: 10px;
@@ -14,12 +14,13 @@
 }
 
 .svg-star {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
     margin-left: 3px;
     margin-right: 3px;
     margin-bottom: 3px;
     vertical-align: middle;
+    color: rgb(199, 21, 191);
 
 }
 
@@ -39,8 +40,6 @@
     font-size: 15px;
 }
 
-
-
 .nickname {
     font-size: 30px;
 }
@@ -58,4 +57,27 @@
     padding-left: 0px;
 }
 
+.review-date {
+    font-size: 17px;
+    color: gray;
+}
 
+.form-select {
+    display: inline-block;
+}
+
+.row {
+    margin-bottom: 5px;
+}
+
+a {
+    color: rgb(199, 21, 191);
+}
+
+a:hover {
+    color: rgb(168, 25, 161);
+}
+
+.user-review {
+    border: 3px solid rgb(199, 21, 191);
+}

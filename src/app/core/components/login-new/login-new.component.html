@@ -1,5 +1,5 @@
 
-@if (this.auth.isLoggedIn) {
+@if (this.auth.isAuthenticated()) {
     <button type="button" class="btn btn-danger" (click)="logOut()">Sign out</button>
     }
 @else {
