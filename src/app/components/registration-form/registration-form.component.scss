@@ -43,17 +43,7 @@ h1 {
     color: var(--neon-rose-hover);
 }
 
-input:focus {
-    border-color: var(--neon-rose);
-    box-shadow: 0 0 0 0.3rem var(--neon-rose-shadow);
-}
-
-textarea:focus {
-    border-color: var(--neon-rose);
-    box-shadow: 0 0 0 0.3rem var(--neon-rose-shadow);
-}
-
-select:focus {
+input:focus, textarea:focus, select:focus {
     border-color: var(--neon-rose);
     box-shadow: 0 0 0 0.3rem var(--neon-rose-shadow);
 }
