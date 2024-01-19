@@ -1,0 +1,87 @@
+<div class="container contact-container rounded">
+    <div class="form" id="contact-form">
+      <h1 id="contact-bar">Please enter your data for contact</h1>
+      <form (submit)="contactUs()" [formGroup]="contactForm">
+            <div class="mb-3 content-center">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name" [(ngModel)]="contactDetails.name"
+                      [style.border-color]="!isValid('name') ? 'red' : ''">
+            @if (!isValid('name')) {
+              <p class="text-danger form-text small"
+                *ngIf="contactForm.get('name')?.hasError('required')">
+                This field is required.
+              </p>
+            }
+            </div>
+            <div class="mb-3">
+              <label for="surname" class="form-label">Surname</label>
+              <input type="text" class="form-control" id="surname" formControlName="surname" [(ngModel)]="contactDetails.surname"
+                      [style.border-color]="!isValid('surname') ? 'red' : ''">
+            @if (!isValid('surname')) {
+              <p class="text-danger form-text small"
+                *ngIf="contactForm.get('surname')?.hasError('required')">
+                This field is required.
+            </p>
+            }
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Enter your phone number</label>
+                <input type="number" class="form-control" id="phoneNumber"  formControlName="phoneNumber" [(ngModel)]="contactDetails.phoneNumber"
+                        [style.border-color]="!isValid('phoneNumber') ? 'red' : ''">
+                @if (!isValid('phoneNumber')) {
+                  <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('phoneNumber')?.hasError('required')">
+                    This field is required and has to be number.
+                </p>
+                <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('phoneNumber')?.hasError('min')">
+                    Minimum length of phone number has to be 9 characters.
+                  </p>
+                <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('phoneNumber')?.hasError('max')">
+                     Maximum length of phone number has to be 9 characters.
+                </p>
+                }
+                </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" formControlName="email" [(ngModel)]="contactDetails.email"
+                        [style.border-color]="!isValid('email') ? 'red' : ''">
+                @if (!isValid('email')) {
+                  <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('email')?.hasError('required')">
+                    This field is required.
+                  </p>
+                  <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('email')?.hasError('email')">
+                    Email must be valid.
+                  </p>
+                  }
+              </div>
+              <div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description of the problem</label>
+                <textarea type="text" class="form-control" id="description" formControlName="description" [(ngModel)]="contactDetails.description" ></textarea>
+                </div>
+              <div class="mb-3-select">
+                <label for="gender" class="form-label">Choose your gender</label>
+                <select type="text" class="form-control" id="gender" formControlName="gender" [(ngModel)]="contactDetails.gender" >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              
+              <p id="checkbox-bar">Choose your type of problem</p>
+              <div class="checkboxes">
+              <div class="form-check" *ngFor="let problem of problemList; let i=index">
+              <input class="form-check-input" type="checkbox" [value]="problem.description" (change)="onCheckChange($event)">
+                <label>
+                  {{problem.description}}
+                </label>
+              </div>
+              </div>
+              </div>
+             </div>
+            <button type="submit" class="btn btn-primary contact-button">Send</button>
+          </form>
+    </div>
+</div>

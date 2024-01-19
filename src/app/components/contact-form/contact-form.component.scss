@@ -1,0 +1,86 @@
+.contact-container {
+    margin-top: 90px;
+    max-width: 600px;
+    background-color: rgb(88, 88, 172);
+    padding: 20px;
+    display:flex;
+    justify-content: center;
+}
+
+.form{
+    padding: 20px;
+}
+
+.contact-button {
+    width: 100%;
+    background-color: rgb(199, 21, 191);
+    border-color: rgb(199, 21, 191);
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.contact-button:hover {
+    background-color: rgb(168, 25, 161);
+    border-color: rgb(168, 25, 161);
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 2px 0 #ffffff;
+}
+
+.sm-text { 
+    font-size: 17px;
+}
+
+.link {
+    color: rgb(199, 21, 191);
+    text-shadow: 1px 0 rgb(199, 21, 191);
+}
+
+.link:hover {
+    color: rgb(168, 25, 161);
+}
+
+input:focus {
+    border-color: rgb(199, 21, 191);
+    box-shadow: 0 0 0 0.3rem rgba(199, 21, 191, 0.25);
+}
+
+textarea:focus {
+    border-color: rgb(199, 21, 191);
+    box-shadow: 0 0 0 0.3rem rgba(199, 21, 191, 0.25);
+}
+
+select:focus {
+    border-color: rgb(199, 21, 191);
+    box-shadow: 0 0 0 0.3rem rgba(199, 21, 191, 0.25);
+}
+
+select{
+    //border-bottom: 300px;
+    margin-bottom: 20px;
+
+}
+
+.form-check-input:checked {
+    background-color: rgb(199, 21, 191);
+    border-color: rgb(199, 21, 191);
+}
+
+.form-check{
+
+    //padding:0px;
+    font-size: 20px;
+    //margin-bottom: 10px;
+}
+
+.checkboxes{
+
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20%;
+
+}

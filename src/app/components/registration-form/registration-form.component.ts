@@ -30,13 +30,10 @@ export class RegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.genres)
-
     for(let genre in this.genres){
-        this.genresList.push(new GenreChoice(this.genres[genre], false))
-
+      this.genresList.push(new GenreChoice(this.genres[genre], false))
+      this.signUpDetails.favouriteGenres.push(new GenreChoice(this.genres[genre], false))
     }
-  console.log(this.genresList)
   
     this.signUpForm = new FormGroup({
 
@@ -62,7 +59,7 @@ export class RegistrationFormComponent implements OnInit {
     this.registerRequest = {
       "email": this.signUpDetails.email,
       "password": this.signUpDetails.password,
-      "userName": this.signUpDetails.userName,
+      "username": this.signUpDetails.userName,
     }
 
     this.signUpRequest().subscribe(
@@ -111,41 +108,22 @@ export class RegistrationFormComponent implements OnInit {
       (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched)) return false;
     return true;
   }
-
-  public checks: Array<GenreChoice> = [
-    {description: 'Akcja', value: false},
-    {description: "Dramat", value: false},
-    {description: "Horror", value: false},
-    {description: 'Komedia', value: false},
-    {description: "Kryminał", value: false},
-    {description: "Romans", value: false}
-  ];
   
-  onCheckChange(event:any) {
-    const formArray: FormArray = this.signUpForm.get('genres') as FormArray;
-  
-    /* Selected */
-    if(event.target.checked){
-      // Add a new control in the arrayForm
-      formArray.push(new FormControl(event.target.value));
-      console.log(formArray)
-    }
-    /* unselected */
-    else{
-      // find the unselected element
-      let i: number = 0;
-  
-      formArray.controls.forEach((ctrl) => {
-        if(ctrl.value == event.target.value) {
-          // Remove the unselected element from the arrayForm
-          formArray.removeAt(i);
-          console.log(formArray)
+  onCheckChange(event:any): void {
+    if (event.target.checked) {
+      for (let i = 0; i < this.signUpDetails.favouriteGenres.length; i++) {
+        if (this.signUpDetails.favouriteGenres[i].description == event.target.value) {
+          this.signUpDetails.favouriteGenres[i].value = true;
           return;
         }
-  
-        i++;
-      });
+      }
+    }
+
+    for (let i = 0; i < this.signUpDetails.favouriteGenres.length; i++) {
+      if (this.signUpDetails.favouriteGenres[i].description == event.target.value) {
+        this.signUpDetails.favouriteGenres[i].value = false;
+        return;
+      }
     }
   }
-
 }
