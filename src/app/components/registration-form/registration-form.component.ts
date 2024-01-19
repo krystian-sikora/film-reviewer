@@ -46,8 +46,8 @@ export class RegistrationFormComponent implements OnInit {
       zipCode: new FormControl('', [Validators.required, Validators.pattern("^\\d{2}-\\d{3}$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]),
-      description: new FormControl('', [Validators.minLength(1), Validators.maxLength(9999)]),
-      gender: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(999)]),
+      gender: new FormControl('', []),
       genres: new FormArray([])
     }
     );

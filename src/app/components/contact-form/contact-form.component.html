@@ -61,7 +61,18 @@
               <div>
               <div class="mb-3">
                 <label for="description" class="form-label">Description of the problem</label>
-                <textarea type="text" class="form-control" id="description" formControlName="description" [(ngModel)]="contactDetails.description" ></textarea>
+                <textarea type="text" class="form-control" id="description" formControlName="description" [(ngModel)]="contactDetails.description" 
+                [style.border-color]="!isValid('description') ? 'red' : ''"></textarea>
+                @if (!isValid('description')) {
+                  <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('description')?.hasError('required')">
+                    This field is required.
+                  </p>
+                  <p class="text-danger form-text small"
+                    *ngIf="contactForm.get('description')?.hasError('maxlength')">
+                    Maximum description lenght is 999.
+                  </p>
+                    }
                 </div>
               <div class="mb-3-select">
                 <label for="gender" class="form-label">Choose your gender</label>
@@ -69,7 +80,7 @@
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-              
+              </div>
               <p id="checkbox-bar">Choose your type of problem</p>
               <div class="checkboxes">
               <div class="form-check" *ngFor="let problem of problemList; let i=index">
@@ -77,8 +88,7 @@
                 <label>
                   {{problem.description}}
                 </label>
-              </div>
-              </div>
+                </div>
               </div>
              </div>
             <button type="submit" class="btn btn-primary contact-button">Send</button>
