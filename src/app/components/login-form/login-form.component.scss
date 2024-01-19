@@ -1,19 +1,19 @@
 .login-container {
     margin-top: 90px;
     max-width: 500px;
-    background-color: rgb(88, 88, 172);
+    background-color: var(--primary-color);
     padding: 20px;
 }
 
 .login-button {
     width: 100%;
-    background-color: rgb(199, 21, 191);
-    border-color: rgb(199, 21, 191);
+    background-color: var(--neon-rose);
+    border-color: var(--neon-rose);
 }
 
 .login-button:hover {
-    background-color: rgb(168, 25, 161);
-    border-color: rgb(168, 25, 161);
+    background-color: var(--neon-rose-hover);
+    border-color: var(--neon-rose-hover);
 }
 
 h1 {
@@ -27,22 +27,22 @@ h1 {
 }
 
 .link {
-    color: rgb(199, 21, 191);
-    text-shadow: 1px 0 rgb(199, 21, 191);
+    color: var(--neon-rose);
+    text-shadow: 1px 0 var(--neon-rose);
 }
 
 .link:hover {
-    color: rgb(168, 25, 161);
+    color: var(--neon-rose-hover);
 }
 
 input:focus {
-    border-color: rgb(199, 21, 191);
-    box-shadow: 0 0 0 0.3rem rgba(199, 21, 191, 0.25);
+    border-color: var(--neon-rose);
+    box-shadow: 0 0 0 0.3rem var(--neon-rose-shadow);
 }
 
 .form-check-input:checked {
-    background-color: rgb(199, 21, 191);
-    border-color: rgb(199, 21, 191);
+    background-color: var(--neon-rose);
+    border-color: var(--neon-rose);
 }
 
 .small {
