@@ -1,19 +1,11 @@
-$safety-orange: rgb(238, 122, 27);
-$marian-blue: rgb(48, 65, 115);
-$celeste: rgb(188, 248, 236);
-$light-blue: rgb(174, 217, 224);
-$cool-gray: rgb(159, 160, 195);
-
-$neon-rose: rgb(199, 21, 191);
 
 .container{
-    color: $safety-orange;
     font-size: 100%;
 }
 
 .navbar {
   border-radius: 10px;
-  background: $neon-rose;
+  background: var(--neon-rose);
   margin: 10px;
 }
 
@@ -21,11 +13,10 @@ $neon-rose: rgb(199, 21, 191);
   margin-left: 10px;
   font-weight: bold;
   font-size: 30px;
-  color: white;
+  color: var(--font-color);
 }
 
 .buttons {
   justify-content: flex-end;
   margin-right: 10px;
 }
-
