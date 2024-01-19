@@ -51,16 +51,22 @@
                 </div>
                 <div class="col">
                     <div class="nickname-review row">
-                        <span class="nickname-container">
-                            {{userReview.review.nickname}}
-                            <span class="badge">
-                                <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
-                                <span class="review-score">{{ userReview.review.score.toFixed(1) }}</span>
+                        <div class="col">
+                            <span class="nickname-container">
+                                {{userReview.review.nickname}}
+                                <span class="badge">
+                                    <img class="svg-star" src="https://www.svgrepo.com/show/13695/star.svg">
+                                    <span class="review-score">{{ userReview.review.score.toFixed(1) }}</span>
+                                </span>
+                                <span class="review-date">
+                                    Posted at {{ userReview.review.created_at | date: 'H:mm dd/MM/yyyy' }}
+                                </span>
                             </span>
-                            <span class="review-date">
-                                Posted at {{ userReview.review.created_at | date: 'H:mm dd/MM/yyyy' }}
-                            </span>
-                        </span>
+                        </div>
+                        
+                        <div class="col-auto delete-review">
+                            <button type="button" class="btn btn-danger" (click)="deleteReview()">Delete</button>
+                        </div>
                     </div>
                     <div class="review-content-container row">
                         <span class="review-title">{{ userReview.review.title }}</span>

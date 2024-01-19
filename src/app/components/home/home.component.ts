@@ -2,7 +2,6 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ApiService } from '../../core/services/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { take } from 'rxjs';
 import { RouterLink } from "@angular/router";
 import { MovieDetails } from '../../interfaces/details/movie/movie-details';
 import { PersonDetails } from '../../interfaces/details/people/person-details';
@@ -25,34 +24,32 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  loadData(): void {
     this.api.getPopular()
-      .pipe(take(1))
       .subscribe(
         (res) => {
           this.popular = res.results;
         })
 
     this.api.getPeople()
-      .pipe(take(1))
       .subscribe(
         (res) => {
           this.people = res.results;
         })
 
     this.api.getUpcoming()
-      .pipe(take(1))
       .subscribe(
         (res) => {
           this.upcoming = res.results;
         })
 
     this.api.getTopRatedSeries()
-      .pipe(take(1))
       .subscribe(
         (res) => {
           this.topRatedSeries = res.results;
         })
-
   }
-
 }
