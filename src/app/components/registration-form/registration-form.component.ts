@@ -73,7 +73,6 @@ export class RegistrationFormComponent implements OnInit {
 
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('refresh_token', response.refresh_token);
-          this.router.navigate(['/']);
         },
         error: (error: any) => {
           if (error.error == "USERNAME ALREADY EXISTS") {
@@ -88,6 +87,9 @@ export class RegistrationFormComponent implements OnInit {
           else{
             this.emailAlreadyExist = false;
           }
+        },
+        complete: () => {
+          this.router.navigate(['/'])
         }
       }
     );
