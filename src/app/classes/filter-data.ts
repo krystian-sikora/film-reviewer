@@ -1,15 +1,10 @@
+import { GenreChoice } from "./genre-choice";
+
 export class FilterData {
     searchInput: String = "";
-    genreAction: boolean = false;
-    genreDrama: boolean = false;
-    genreComedy: boolean = false;
-    genreHorror: boolean = false;
-    genreDocument: boolean = false;
-    genreThriller: boolean = false;
-    genreCrime: boolean = false;
-    genreFantasy: boolean = false;
-    genreRomance: boolean = false;
-    genreSciFi: boolean = false;
-    relaseDate: Date = new Date(2024, 12, 1);
-
+    genres: Array<GenreChoice> = new Array<GenreChoice>();
+    relaseDate: String = '2000-01';
+    sortBy: String = "popularity";
+    sortOrder: String = "desc";
+    includeAdult: Boolean = false;
 }

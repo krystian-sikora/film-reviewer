@@ -69,6 +69,15 @@ input[type="month"] {
 #grid {
   display: grid;
   align-items: left;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   column-gap: 5%;
+}
+
+img {
+  margin: 5px;
+}
+
+.results, .filter {
+  margin-top: 100px;
+  background-color: var(--primary-color);
 }

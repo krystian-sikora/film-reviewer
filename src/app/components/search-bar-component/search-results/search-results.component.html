@@ -1,0 +1,17 @@
+
+<app-search-bar-component></app-search-bar-component>
+
+<div class="container rounded">
+    <h1>Search results for: {{ query }}</h1>
+
+    @for (item of searchResults; track $index) {
+        @if(item.poster_path) {
+            <img class="rounded"
+            ngSrc="https://image.tmdb.org/t/p/w500/{{ item.poster_path }}"
+            alt="Poster for: {{ item.title }}" width="300" height="450"
+            routerLink="/movie/{{ item.id }}">
+        }
+    }
+</div>
+
+
