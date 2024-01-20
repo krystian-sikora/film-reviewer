@@ -76,7 +76,6 @@ throw new Error('Method not implemented.');
 
           localStorage.setItem('access_token', response.access_token);
           localStorage.setItem('refresh_token', response.refresh_token);
-          this.router.navigate(['/']);
         },
         error: (error: any) => {
           if (error.error == "USERNAME ALREADY EXISTS") {
@@ -91,6 +90,9 @@ throw new Error('Method not implemented.');
           else{
             this.emailAlreadyExist = false;
           }
+        },
+        complete: () => {
+          this.router.navigate(['/'])
         }
       }
     );

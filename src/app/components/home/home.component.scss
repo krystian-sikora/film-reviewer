@@ -11,27 +11,19 @@ swiper-slide, img {
 }
 
 #people {
-
     width: 150px;
     height: 230px;
     margin-right: 4px;
-
 }
 
 .container {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: rgb(88, 88, 172);
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--font-color);
 }
 
 .swiper-container {
     max-width: fit-content;
-}
-
-.spacer {
-    background-color: rgb(27, 27, 81);
-    height: 30px;
-    margin-right: 4px;
 }

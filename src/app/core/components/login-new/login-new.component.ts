@@ -19,6 +19,6 @@ export class LoginNewComponent {
   }
 
   isLoggedIn() {
-    return this.auth.isLoggedIn;
+    return this.auth.isAuthenticated();
   }
 }
