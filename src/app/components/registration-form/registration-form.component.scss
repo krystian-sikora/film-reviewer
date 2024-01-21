@@ -62,9 +62,18 @@ select{
     font-size: 20px;
 }
 
-.checkboxes{
+.checkboxes {
     display: grid;
     align-items: center; 
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20%;
+    column-gap: 10%;
 }
+
+.form-label {
+    font-size: 25px;
+}
+
+#checkbox-bar {
+    font-size: 25px;
+}
+

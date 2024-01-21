@@ -1,9 +1,18 @@
 export enum Genres {
 
-    Akcja="",
-    Dramat="",
-    Horror="",
-    Komedia="",
-    Kryminał="",
-    Romans=""
+    Action="",
+    Adventure="",
+    Animation="",
+    Comedy="",
+    Crime="",
+    Documentary="",
+    Drama="",
+    Family="",
+    Fantasy="",
+    History="",
+    Romance="",
+    SciFi="",
+    Thriller="",
+    War="",
+    Western=""
 }

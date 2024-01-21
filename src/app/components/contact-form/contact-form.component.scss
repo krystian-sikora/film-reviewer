@@ -1,3 +1,4 @@
+
 .contact-container {
     margin-top: 90px;
     max-width: 600px;
@@ -69,5 +70,13 @@ select{
     align-items: center; 
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 20%;
-
 }
+
+.form-label {
+    font-size: 25px;
+}
+
+#checkbox-bar {
+    font-size: 25px;
+}
+
