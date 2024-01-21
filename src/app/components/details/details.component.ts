@@ -3,7 +3,6 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Details } from '../../interfaces/details/details';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../core/services/api/api.service';
-import { NONE_TYPE } from '@angular/compiler';
 import { ReviewsComponent } from "./reviews/reviews.component";
 
 

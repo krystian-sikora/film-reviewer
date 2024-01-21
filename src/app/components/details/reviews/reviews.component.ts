@@ -108,8 +108,22 @@ export class ReviewsComponent implements OnInit {
     )
   }
 
-  didUserReview() {
+  deleteReview(): void {
+    alert("Are you sure you want to delete your review?")
+    this.deleteReviewRequest().subscribe(
+      {
+        error: (error: any) => {
+          console.log(error);
+        },
+        complete: () => {
+          this.getReviews();
+          this.didUserReview();
+        }
+      }
+    )
+  }
 
+  didUserReview() {
     this.didUserReviewRequest().subscribe(
       {
         next: (response: UserReview | any) => {
@@ -136,7 +150,11 @@ export class ReviewsComponent implements OnInit {
 
   postReviewRequest(review: any) {
     let headers = this.auth.getHeaders();
-    return this.http.post(environment.LOCAL_API_URL + '/api/reviews/add', review, { headers: headers });
+    return this.http.post(environment.LOCAL_API_URL + '/api/reviews', review, { headers: headers });
+  }
+
+  deleteReviewRequest() {
+    return this.http.delete(environment.LOCAL_API_URL + '/api/reviews/' + this.id, { headers: this.auth.getHeaders() });
   }
 
   numSequence(n: number): Array<number> {

@@ -1,0 +1,102 @@
+<div class="row justify-content-between">
+  <div class="col-2 filter rounded">
+
+    <div class="container">
+      <h1>Filters</h1>
+
+    <form #f="ngForm" class="mb-3" (submit)="filter(f)">
+
+        <!-- Checkbox: Zaznacz gatunki filmów do filtrowania -->
+        <div class="mb-3">
+          <label class="form-label">Genres: </label>
+          <div class="col-auto" id="grid">
+            @for (genre of genresList; track $index) {
+                <label for="{{genre.description}}">
+                  <input name="{{genre.description}}" class="form-check-input" 
+                  type="checkbox" 
+                  [value]="genre.description" 
+                  (change)="onCheckChange($event)">
+                  {{genre.description}}
+                </label>
+            }
+          </div>
+        </div>
+
+        <!-- date: Wyszukaj film po dacie -->
+        <div class="mb-3">
+          <div class="col-auto">
+            <label for="inputPassword6" class="col-form-label">Date of priemiere:</label>
+            <input type="month" id="dataPremiery" name="dataPremiery" [(ngModel)]="filterData.relaseDate">
+          </div>
+        </div>
+
+        <!-- Radio: Popularność / Data premiery -->
+        <div class="mb-3">
+          <div div class="col-auto">
+            <label class="form-label">Sort by:</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortBy" id="flexRadioDefault1" value="popularity" [(ngModel)]="filterData.sortBy">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Popularity
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortBy" id="flexRadioDefault2" value="revenue" [(ngModel)]="filterData.sortBy">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Revenue
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortBy" id="flexRadioDefault3" value="vote_average" [(ngModel)]="filterData.sortBy">
+            <label class="form-check-label" for="flexRadioDefault3">
+              Vote average
+            </label>
+          </div>
+        </div>
+
+        <!-- Select: Sortuj od: Rosnąco / Malejąco -->
+        <div class="mb-3">  
+          <div class="col-auto">
+            <label class="form-label">Sort order:</label>
+          </div>
+          <div class="col-auto">
+            <select id="sortOrder" name="sortOrder" class="form-control" [(ngModel)]="filterData.sortOrder" required>
+              <option value="asc" selected>Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- checkbox: filmy dla dorosłych -->
+        <div class="mb-3">
+          <div class="col-auto">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" 
+                name="includeAdult" [(ngModel)]="filterData.includeAdult" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Adult</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Przycisk do wysyłania formularza -->
+        <button type="submit" class="form-label" id="switch">Discover</button>
+      </form>
+    </div>
+  </div>
+  @if (movieList.length !== 0) {
+    <div class="col-9 rounded results">
+        <h1>Discover results:</h1>
+    
+        @for (item of movieList; track $index) {
+            @if(item.poster_path) {
+                <img class="rounded"
+                ngSrc="https://image.tmdb.org/t/p/w500/{{ item.poster_path }}"
+                alt="Poster for: {{ item.title }}" width="300" height="450"
+                routerLink="/movie/{{ item.id }}">
+            }
+        }
+      
+    </div>
+  }
+</div>
