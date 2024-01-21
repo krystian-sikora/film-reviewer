@@ -36,8 +36,8 @@ export class ContactFormComponent implements OnInit {
       surname: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
       phoneNumber: new FormControl('', [Validators.required, Validators.min(100000000), Validators.max(999999999)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(999)]),
-      gender: new FormControl('', []),
+      description: new FormControl('', [Validators.minLength(1), Validators.maxLength(9999)]),
+      gender: new FormControl('', [Validators.required]),
       problemType: new FormArray([])
     });
   }
@@ -47,8 +47,6 @@ export class ContactFormComponent implements OnInit {
 
     console.log(this.contactDetails);
     this.contactForm.reset();
-    this.router.navigate(['/']);
-
   }
 
   isFormValid() {
