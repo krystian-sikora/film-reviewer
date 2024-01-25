@@ -14,5 +14,4 @@ export class SignUpDetails {
     password: String="";
     email: String="";
     userName: String="";
-
 }

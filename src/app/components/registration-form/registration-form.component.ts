@@ -33,26 +33,23 @@ throw new Error('Method not implemented.');
 
   ngOnInit(): void {
 
-    console.log(this.genres)
-
     for(let genre in this.genres){
-        this.genresList.push(new GenreChoice(this.genres[genre], false))
-
+      this.genresList.push(new GenreChoice(this.genres[genre], false))
+      this.signUpDetails.favouriteGenres.push(new GenreChoice(this.genres[genre], false))
     }
-  console.log(this.genresList)
   
     this.signUpForm = new FormGroup({
 
-      name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      surname: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      city: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      street: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
+      surname: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
+      userName: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
+      city: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
+      street: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(99)]),
       houseNumber: new FormControl('', [Validators.required]),
-      zipCode: new FormControl('', [Validators.pattern("^\\d{2}-\\d{3}$")]),
+      zipCode: new FormControl('', [Validators.required, Validators.pattern("^\\d{2}-\\d{3}$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]),
-      description: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9999)]),
+      description: new FormControl('', [Validators.minLength(1), Validators.maxLength(9999)]),
       gender: new FormControl('', [Validators.required]),
       genres: new FormArray([])
     }
@@ -116,41 +113,22 @@ throw new Error('Method not implemented.');
       (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched)) return false;
     return true;
   }
-
-  public checks: Array<GenreChoice> = [
-    {description: 'Akcja', value: false},
-    {description: "Dramat", value: false},
-    {description: "Horror", value: false},
-    {description: 'Komedia', value: false},
-    {description: "Kryminał", value: false},
-    {description: "Romans", value: false}
-  ];
   
-  onCheckChange(event:any) {
-    const formArray: FormArray = this.signUpForm.get('genres') as FormArray;
-  
-    /* Selected */
-    if(event.target.checked){
-      // Add a new control in the arrayForm
-      formArray.push(new FormControl(event.target.value));
-      console.log(formArray)
-    }
-    /* unselected */
-    else{
-      // find the unselected element
-      let i: number = 0;
-  
-      formArray.controls.forEach((ctrl) => {
-        if(ctrl.value == event.target.value) {
-          // Remove the unselected element from the arrayForm
-          formArray.removeAt(i);
-          console.log(formArray)
+  onCheckChange(event:any): void {
+    if (event.target.checked) {
+      for (let i = 0; i < this.signUpDetails.favouriteGenres.length; i++) {
+        if (this.signUpDetails.favouriteGenres[i].description == event.target.value) {
+          this.signUpDetails.favouriteGenres[i].value = true;
           return;
         }
-  
-        i++;
-      });
+      }
+    }
+
+    for (let i = 0; i < this.signUpDetails.favouriteGenres.length; i++) {
+      if (this.signUpDetails.favouriteGenres[i].description == event.target.value) {
+        this.signUpDetails.favouriteGenres[i].value = false;
+        return;
+      }
     }
   }
-
 }
