@@ -1,7 +1,7 @@
-import { Genre } from "../genre"
-import { ProductionCompany } from "../production-company"
-import { ProductionCountry } from "../production-country"
-import { SpokenLanguage } from "../spoken-language"
+import { type Genre } from '../genre'
+import { type ProductionCompany } from '../production-company'
+import { type ProductionCountry } from '../production-country'
+import { type SpokenLanguage } from '../spoken-language'
 
 export interface MovieDetails {
   adult: boolean
@@ -30,11 +30,3 @@ export interface MovieDetails {
   vote_average: number
   vote_count: number
 }
-
-
-
-
-
-
-
-

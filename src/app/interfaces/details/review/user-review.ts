@@ -1,6 +1,6 @@
-import { Review } from "./review";
+import { type Review } from './review'
 
 export interface UserReview {
-    user_reviewed: boolean;
-    review: Review;
+  user_reviewed: boolean
+  review: Review
 }

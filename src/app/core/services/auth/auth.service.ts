@@ -1,71 +1,73 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, type OnInit } from '@angular/core'
+import { type Observable } from 'rxjs'
+import { type LoginResponse } from '../../../interfaces/auth/login-response'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements OnInit {
+  protected isLoggedIn: boolean = false
 
-  protected isLoggedIn: boolean = false;
+  constructor (private readonly http: HttpClient) { }
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
+  ngOnInit (): void {
     console.log('auth service init')
-    this.handleAuth();
+    this.handleAuth()
   }
 
-  isAuthenticated() {
-    return this.isLoggedIn;
+  isAuthenticated (): boolean {
+    return this.isLoggedIn
   }
 
-  logIn(accesToken: string, refreshToken: string) {
-    localStorage.setItem('access_token', accesToken);
-    localStorage.setItem('refresh_token', refreshToken);
-    this.isLoggedIn = true;
+  logIn (accesToken: string, refreshToken: string): void {
+    localStorage.setItem('access_token', accesToken)
+    localStorage.setItem('refresh_token', refreshToken)
+    this.isLoggedIn = true
   }
 
-  logOut() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    this.isLoggedIn = false;
+  logOut (): void {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    this.isLoggedIn = false
   }
 
-  handleAuth() {
-    const accessToken = localStorage.getItem('access_token');
-    const refreshToken = localStorage.getItem('refresh_token');
+  handleAuth (): void {
+    const accessToken = localStorage.getItem('access_token')
+    const refreshToken = localStorage.getItem('refresh_token')
 
-    if (accessToken == null || refreshToken == null) return;
-    
-    this.refreshToken(refreshToken);
+    if (accessToken == null || refreshToken == null) return
+
+    this.refreshToken(refreshToken)
   }
 
-  refreshToken(token: string) {
+  refreshToken (token: string): void {
     this.refreshTokenRequest(token).subscribe(
       {
-        next: (response: any) => {
-          localStorage.setItem('access_token', response.access_token);
-          localStorage.setItem('refresh_token', response.refresh_token);
-          this.isLoggedIn = true;
+        next: (response: LoginResponse) => {
+          localStorage.setItem('access_token', response.access_token)
+          localStorage.setItem('refresh_token', response.refresh_token)
+          this.isLoggedIn = true
         },
-        error: (error: any) => {
-          this.isLoggedIn = false;
+        error: () => {
+          this.isLoggedIn = false
         },
         complete: () => {
           console.log('complete')
         }
       }
-    );
+    )
   }
 
-  refreshTokenRequest(token: string) {
+  refreshTokenRequest (token: string): Observable<any> {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token)
 
-    return this.http.post('http://localhost:8080/api/auth/refresh', null, { headers: headers });
+    return this.http.post('http://localhost:8080/api/auth/refresh', null, { headers })
   }
 
-  getHeaders() {
+  getHeaders (): HttpHeaders {
     return new HttpHeaders()
       .set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
   }

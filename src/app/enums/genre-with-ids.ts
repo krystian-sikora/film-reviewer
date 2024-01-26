@@ -1,5 +1,4 @@
 export enum GenreWithIds {
-
   Action = 28,
   Adventure = 12,
   Animation = 16,

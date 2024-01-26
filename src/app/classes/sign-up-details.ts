@@ -1,17 +1,16 @@
-import { GenreChoice } from "./genre-choice";
+import { type GenreChoice } from './genre-choice'
 
 export class SignUpDetails {
-
-    name: String="";
-    surname: String="";
-    city: String="";
-    street: String="";
-    houseNumber: String="";
-    zipCode: String="";
-    description: String="";
-    gender: String="";
-    favouriteGenres: Array<GenreChoice> = new Array<GenreChoice>(); 
-    password: String="";
-    email: String="";
-    userName: String="";
+  name: string = ''
+  surname: string = ''
+  city: string = ''
+  street: string = ''
+  houseNumber: string = ''
+  zipCode: string = ''
+  description: string = ''
+  gender: string = ''
+  favouriteGenres: GenreChoice[] = new Array<GenreChoice>()
+  password: string = ''
+  email: string = ''
+  userName: string = ''
 }

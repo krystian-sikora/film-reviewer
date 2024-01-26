@@ -1,7 +1,7 @@
-import { SignInDetails } from './sign-in-details';
+import { SignInDetails } from './sign-in-details'
 
 describe('SignInDetails', () => {
   it('should create an instance', () => {
-    expect(new SignInDetails()).toBeTruthy();
-  });
-});
+    expect(new SignInDetails()).toBeTruthy()
+  })
+})

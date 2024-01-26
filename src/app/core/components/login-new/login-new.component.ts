@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { Component } from '@angular/core'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { Router } from '@angular/router'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { AuthService } from '../../services/auth/auth.service'
 
 @Component({
   selector: 'app-login-new',
@@ -9,16 +11,16 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './login-new.component.scss'
 })
 export class LoginNewComponent {
-  protected loggedIn: boolean = false;
- 
-  constructor(private router: Router, protected auth: AuthService) { }
+  protected loggedIn: boolean = false
 
-  logOut() {
-    this.auth.logOut();
-    this.router.navigate(['/']);
+  constructor (private readonly router: Router, protected auth: AuthService) { }
+
+  logOut (): void {
+    this.auth.logOut()
+    this.router.navigate(['/']).catch(error => { console.log(error) })
   }
 
-  isLoggedIn() {
-    return this.auth.isAuthenticated();
+  isLoggedIn (): boolean {
+    return this.auth.isAuthenticated()
   }
 }

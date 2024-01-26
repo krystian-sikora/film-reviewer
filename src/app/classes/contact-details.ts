@@ -1,17 +1,11 @@
-import { ProblemChoice } from "./problem-choice";
-
+import { type ProblemChoice } from './problem-choice'
 
 export class ContactDetails {
-
-    name: String="";
-    surname: String="";
-    phoneNumber: String="";
-    email: String="";
-    description: String="";
-    gender: String="";
-    problemType: Array<ProblemChoice> = new Array<ProblemChoice>(); 
-
-
+  name: string = ''
+  surname: string = ''
+  phoneNumber: string = ''
+  email: string = ''
+  description: string = ''
+  gender: string = ''
+  problemType: ProblemChoice[] = new Array<ProblemChoice>()
 }
-
-

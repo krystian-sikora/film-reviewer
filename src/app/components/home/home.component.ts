@@ -1,11 +1,12 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ApiService } from '../../core/services/api/api.service';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterLink } from "@angular/router";
-import { MovieDetails } from '../../interfaces/details/movie/movie-details';
-import { PersonDetails } from '../../interfaces/details/people/person-details';
-import { SearchBarComponentComponent } from '../search-bar-component/search-bar-component.component';
+import { Component, type OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { CommonModule, NgOptimizedImage } from '@angular/common'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { ApiService } from '../../core/services/api/api.service'
+import { HttpClientModule } from '@angular/common/http'
+import { RouterLink } from '@angular/router'
+import { type MovieDetails } from '../../interfaces/details/movie/movie-details'
+import { type PersonDetails } from '../../interfaces/details/people/person-details'
+import { SearchBarComponentComponent } from '../search-bar-component/search-bar-component.component'
 
 @Component({
   selector: 'app-home',
@@ -16,40 +17,40 @@ import { SearchBarComponentComponent } from '../search-bar-component/search-bar-
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent implements OnInit {
-  popular: Array<MovieDetails> | undefined;
-  people: Array<PersonDetails> | undefined;
-  upcoming: Array<MovieDetails> | undefined;
-  topRatedSeries: Array<MovieDetails> | undefined;
+  popular: MovieDetails[] | undefined
+  people: PersonDetails[] | undefined
+  upcoming: MovieDetails[] | undefined
+  topRatedSeries: MovieDetails[] | undefined
 
-  constructor(private api: ApiService) { }
+  constructor (private readonly api: ApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.loadData()
   }
 
-  loadData(): void {
+  loadData (): void {
     this.api.getPopular()
       .subscribe(
         (res) => {
-          this.popular = res.results;
+          this.popular = res.results
         })
 
     this.api.getPeople()
       .subscribe(
         (res) => {
-          this.people = res.results;
+          this.people = res.results
         })
 
     this.api.getUpcoming()
       .subscribe(
         (res) => {
-          this.upcoming = res.results;
+          this.upcoming = res.results
         })
 
     this.api.getTopRatedSeries()
       .subscribe(
         (res) => {
-          this.topRatedSeries = res.results;
+          this.topRatedSeries = res.results
         })
   }
 }

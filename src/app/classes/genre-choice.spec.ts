@@ -1,7 +1,7 @@
-import { GenreChoice } from './genre-choice';
+import { GenreChoice } from './genre-choice'
 
 describe('GenreChoice', () => {
   it('should create an instance', () => {
-    expect(new GenreChoice()).toBeTruthy();
-  });
-});
+    expect(new GenreChoice('', false)).toBeTruthy()
+  })
+})

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { Router, RouterLink } from '@angular/router'
+import { FormsModule, type NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-search-bar-component',
@@ -11,13 +12,12 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './search-bar-component.component.scss'
 })
 export class SearchBarComponentComponent {
+  protected query: string = ''
 
-  protected query: string = '';
+  constructor (private readonly router: Router) { }
 
-  constructor(private router: Router) { } 
-
-  submit(f: NgForm) {
-    console.log(this.query);
-    this.router.navigate(['/search'], { queryParams: { query: this.query } });
+  submit (f: NgForm): void {
+    console.log(this.query)
+    this.router.navigate(['/search'], { queryParams: { query: this.query } }).catch(error => { console.log(error) })
   }
 }

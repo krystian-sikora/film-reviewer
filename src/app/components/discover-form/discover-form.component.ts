@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { FormArray, FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { FilterData } from '../../classes/filter-data';
-import { Genres } from '../../enums/genres';
-import { GenreChoice } from '../../classes/genre-choice';
-import { GenreWithIds } from '../../enums/genre-with-ids';
-import { MovieDetails } from '../../interfaces/details/movie/movie-details';
-import { RouterLink } from '@angular/router';
+import { Component, type OnInit } from '@angular/core'
+import { CommonModule, NgOptimizedImage } from '@angular/common'
+import { environment } from '../../../environments/environment'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { HttpClient } from '@angular/common/http'
+import { FormArray, FormControl, FormGroup, FormsModule, type NgForm } from '@angular/forms'
+import { FilterData } from '../../classes/filter-data'
+import { Genres } from '../../enums/genres'
+import { GenreChoice } from '../../classes/genre-choice'
+import { GenreWithIds } from '../../enums/genre-with-ids'
+import { type MovieDetails } from '../../interfaces/details/movie/movie-details'
+import { RouterLink } from '@angular/router'
+import { type Observable } from 'rxjs'
 
 @Component({
   selector: 'app-discover-form',
@@ -18,21 +20,19 @@ import { RouterLink } from '@angular/router';
   styleUrl: './discover-form.component.scss'
 })
 export class DiscoverFormComponent implements OnInit {
-  
-  protected filterRequest: any;
-  protected filterForm: FormGroup = new FormGroup({});
-  protected filterData: FilterData = new FilterData();
-  protected genres: Array<String> = Object.keys(Genres);
-  protected genresList: Array<GenreChoice> = new Array<GenreChoice>();
-  protected movieList: Array<MovieDetails> = new Array<MovieDetails>();
+  protected filterRequest: any
+  protected filterForm: FormGroup = new FormGroup({})
+  protected filterData: FilterData = new FilterData()
+  protected genres: string[] = Object.keys(Genres)
+  protected genresList: GenreChoice[] = new Array<GenreChoice>()
+  protected movieList: MovieDetails[] = new Array<MovieDetails>()
 
-  constructor(private http: HttpClient) { }
+  constructor (private readonly http: HttpClient) { }
 
-  ngOnInit(): void {
-
-    for (let genre in this.genres) {
-      this.genresList.push(new GenreChoice(this.genres[genre], false))
-      this.filterData.genres.push(new GenreChoice(this.genres[genre], false))
+  ngOnInit (): void {
+    for (let i = 0; i < this.genres.length; i++) {
+      this.genresList.push(new GenreChoice(this.genres[i], false))
+      this.filterData.genres.push(new GenreChoice(this.genres[i], false))
     }
 
     this.filterForm = new FormGroup(
@@ -41,79 +41,78 @@ export class DiscoverFormComponent implements OnInit {
         genres: new FormArray([]),
         relaseDate: new FormControl(''),
         sortBy: new FormControl(''),
-        sortOrder: new FormControl(''),
+        sortOrder: new FormControl('')
       }
-    );
+    )
   }
 
-  filter(f: NgForm) {
+  filter (f: NgForm): void {
     console.log(this.filterData)
     console.log(this.generateParams())
 
     this.getFiltersRequest().subscribe(
       {
         next: (response: any) => {
-          this.movieList = response.results;
-          console.log(response);
+          this.movieList = response.results
+          console.log(response)
         },
         error: (error: any) => {
-          console.log(error);
+          console.log(error)
         }
       }
     )
   }
 
-  getGenreId(genreName: String): string {
-    
-    for (let genre in GenreWithIds) {
-      if(genreName == genre) {
+  getGenreId (genreName: string): string {
+    for (const genre in GenreWithIds) {
+      if (genreName === genre) {
         return GenreWithIds[genre]
       }
     }
-    
-    return '';
+
+    return ''
   }
- 
-  getFiltersRequest() {
+
+  getFiltersRequest (): Observable<any> {
     return this.http.get(`https://api.themoviedb.org/3/discover/movie?${this.generateParams()}&api_key=${environment.API_KEY}`)
   }
 
-  generateParams(): string {
-
-    let data: { [key: string]: any } = {
+  generateParams (): string {
+    const data: Record<string, any> = {
       with_genres: this.filterData.genres.filter(genre => genre.value).map(genre => this.getGenreId(genre.description)).join(','),
       include_adult: this.filterData.includeAdult,
-      sort_by: this.filterData.sortBy !== '' ? this.filterData.sortBy + '.' + this.filterData.sortOrder : '',
-      "primary_release_date.gte": this.filterData.relaseDate + '-01',
-    } 
+      sort_by: this.filterData.sortBy !== '' ? `${this.filterData.sortBy}.${this.filterData.sortOrder}` : '',
+      'primary_release_date.gte': this.filterData.relaseDate + '-01'
+    }
 
     console.log(data)
 
-    for(let key in data) {
-      if(data[key] === '') {
-        delete data[key];
+    for (const key in data) {
+      if (data[key] === '') {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+        delete data[key]
       }
     }
 
-    return new URLSearchParams(data).toString();
+    return new URLSearchParams(data).toString()
   }
 
-  onCheckChange(event:any): void {
+  onCheckChange (event: any): void {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (event.target.checked) {
       for (let i = 0; i < this.filterData.genres.length; i++) {
-        if (this.filterData.genres[i].description == event.target.value) {
-          this.filterData.genres[i].value = true;
-          return;
+        if (this.filterData.genres[i].description === event.target.value) {
+          this.filterData.genres[i].value = true
+          return
         }
       }
     }
 
     for (let i = 0; i < this.filterData.genres.length; i++) {
-      if (this.filterData.genres[i].description == event.target.value) {
-        this.filterData.genres[i].value = false;
-        return;
+      if (this.filterData.genres[i].description === event.target.value) {
+        this.filterData.genres[i].value = false
+        return
       }
     }
   }
 }
-

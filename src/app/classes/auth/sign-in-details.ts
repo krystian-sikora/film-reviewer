@@ -1,6 +1,4 @@
 export class SignInDetails {
-    email: string = '';
-    password: string = '';
-
-    constructor() {}
+  email: string = ''
+  password: string = ''
 }
